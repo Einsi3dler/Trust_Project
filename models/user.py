@@ -12,8 +12,8 @@ class User(Base, Database):
     password = Column(String(128), nullable=False)
     first_name = Column(String(128), nullable=False)
     last_name = Column(String(128), nullable=False)
-    facebook_handle = Column(String(128), nullable=False)
-    twitter_handle = Column(String(128), nullable=False)
-    instagram_handle = Column(String(128), nullable=False)
+    facebook_handle = Column(String(128), nullable=True)
+    twitter_handle = Column(String(128), nullable=True)
+    instagram_handle = Column(String(128), nullable=True)
     transactions = relationship("Transaction", backref="place",
                                 cascade="all, delete")
