@@ -1,3 +1,5 @@
+use trust_db;
+
 create table if not exists User (
 	first_name VARCHAR(128),
 	last_name VARCHAR(128),
