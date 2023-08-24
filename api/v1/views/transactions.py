@@ -29,10 +29,13 @@ def get_user_transactions(user_id):
 		transaction_list.append(transaction.to_dict())
 	return jsonify(transaction_list)
 
-@app_views.route("users/<user_id>/transactions", method=['POST'])
-def post_user_transactions(user_id):
-    user = storage.get(User, user_id)
-    if not user:
+@app_views.route("user/<seller_id>/<buyer_id>/transactions", method=['POST'])
+def post_user_transactions(seller_id, buyer_id):
+    seller = storage.get(User, seller_id)
+    if not seller:
+        abort(404)
+    buyer = storage.get(User, buyer_id)
+    if not buyer:
         abort(404)
     if not request.get_json():
         abort(400, description="Not a JSON")

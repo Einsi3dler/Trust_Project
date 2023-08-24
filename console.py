@@ -7,14 +7,16 @@ import models
 from models.transaction import Transaction
 from models.base import Base
 from models.user import User
+from models.conversation import Conversation
+from models.message import Message
 import shlex  # for splitting the line along spaces except in double quotes
 
-classes = {"Transaction": Transaction, "User": User}
+classes = {"Transaction": Transaction, "User": User, "Conversation": Conversation, "Message": Message}
 
 
 class TrustCommand(cmd.Cmd):
     """ HBNH console """
-    prompt = '(hbnb) '
+    prompt = '(trust) '
 
     def do_EOF(self, arg):
         """Exits console"""
@@ -154,6 +156,7 @@ class TrustCommand(cmd.Cmd):
                 print("** instance id missing **")
         else:
             print("** class doesn't exist **")
+
 
 if __name__ == '__main__':
     TrustCommand().cmdloop()

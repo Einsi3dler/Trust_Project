@@ -3,13 +3,15 @@ import models
 from models.transaction import Transaction
 from models.base import Database
 from models.user import User
+from models.buyer import Buyer
+from models.seller import Seller
 from models.message import Message
 from models.conversation import Conversation
 from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"Transaction": Transaction, "User": User, "Message": Message, "Converation": Conversation}
+classes = {"Transaction": Transaction, "User": User, "Message": Message, "Converation": Conversation, "Seller":Seller, "BUyer": Buyer}
 
 
 class DBStorage:
@@ -19,18 +21,15 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        MYSQL_USER = getenv('YSQL_USER')
+        MYSQL_USER = getenv('MYSQL_USER')
         MYSQL_PWD = getenv('MYSQL_PWD')
         MYSQL_HOST = getenv('MYSQL_HOST')
         MYSQL_DB = getenv('MYSQL_DB')
-        HBNB_ENV = getenv('HBNB_ENV')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(MYSQL_USER,
                                              MYSQL_PWD,
                                              MYSQL_HOST,
                                              MYSQL_DB))
-        if HBNB_ENV == "test":
-            Database.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """query on the current database session"""
