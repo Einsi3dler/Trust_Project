@@ -15,5 +15,7 @@ class User(Base, Database):
     facebook_handle = Column(String(128), nullable=True)
     twitter_handle = Column(String(128), nullable=True)
     instagram_handle = Column(String(128), nullable=True)
-    transactions = relationship("Transaction", backref="place",
+    transactions = relationship("Transaction", backref="users",
+                                cascade="all, delete")
+    conversations = relationship("Conversation", backref="users",
                                 cascade="all, delete")

@@ -3,11 +3,13 @@ import models
 from models.transaction import Transaction
 from models.base import Database
 from models.user import User
+from models.message import Message
+from models.conversation import Conversation
 from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"Transaction": Transaction, "User": User}
+classes = {"Transaction": Transaction, "User": User, "Message": Message, "Converation": Conversation}
 
 
 class DBStorage:
