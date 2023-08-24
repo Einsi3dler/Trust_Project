@@ -1,5 +1,5 @@
 #!/bin/env python
-from app import create_app, socketio
+from chat.v1.app import create_app, socketio
 
 app = create_app(debug=True)
 
