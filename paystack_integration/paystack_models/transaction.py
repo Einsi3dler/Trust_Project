@@ -93,7 +93,7 @@ class Transaction(Base):
         reference -- optional
         metadata -- a list if json data objects/dicts
         """
-        amount = utils.validate_amount(amount)
+        amount = self.validate_amount(amount)
 
         if not email:
             raise InvalidDataError("Customer's Email is required to charge")
@@ -153,7 +153,7 @@ class Transaction(Base):
         """
         Initiates transfer to a customer
         """
-        amount = utils.validate_amount(amount)
+        amount = self.validate_amount(amount)
         url = self._url("/transfer")
         payload = {
             "amount": amount,
