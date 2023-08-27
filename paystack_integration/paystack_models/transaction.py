@@ -61,10 +61,6 @@ class Transaction(Base):
             "amount": amount,
         }
 
-        if plan:
-            payload.update({"plan": plan})
-        if channel:
-            payload.update({"channels": channel})
         if reference:
             payload.update({"reference": reference})
         if metadata:

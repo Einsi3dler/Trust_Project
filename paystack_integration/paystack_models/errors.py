@@ -1,26 +1,26 @@
 
 
-class PyPaystackError(Exception):
+class PaystackError(Exception):
     """
     Python Paystack Error
     """
     pass
 
-class MissingAuthKeyError(PyPaystackError):
+class MissingAuthKeyError(PaystackError):
     """
     We can't find the authentication key
     """
     pass
 
 
-class InvalidMethodError(PyPaystackError):
+class InvalidMethodError(PaystackError):
     """
     Invalid or unrecoginised/unimplemented HTTP request method
     """
     pass
 
 
-class InvalidDataError(PyPaystackError):
+class InvalidDataError(PaystackError):
     """
     Invalid input recognised. Saves unecessary trip to server
     """
