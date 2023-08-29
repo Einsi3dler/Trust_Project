@@ -1,12 +1,12 @@
 import { Form, Button } from "react-bootstrap";
-import PageHeader from "./header";
+import PageHeader from "../header/header";
 
 
 export default function SignupPage () {
 	return (
 		<>
 		<PageHeader/>
-		<div className="bodycontainer2 ">
+		<div className="page-div bg-light">
 
 		<div className="auth-wrapper">
 			<div className="auth-inner" id="signup">

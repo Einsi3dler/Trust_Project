@@ -1,17 +1,17 @@
 import { Form, Button } from "react-bootstrap";
-import PageHeader from "./header";
+import PageHeader from "../header/header";
+import './login.css';
 
 
-export default function LoginPage ({refname}) {
+export default function LoginPage () {
 return (
 	<>
 	<PageHeader/>
-		<div className="bodycontainer2 ">
-
-				<div className="auth-wrapper">
+		<div className="page-div bg-light">
+		<div className="auth-wrapper">
           <div className="auth-inner">
-					<Form className="form">
-        <h3>Sign In {refname}</h3>
+			<Form className="form">
+        <h3>Sign In</h3>
 
         <div className="mb-3">
           <label>Email address</label>
