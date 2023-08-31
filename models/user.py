@@ -4,9 +4,10 @@ from models.base import Base, Database
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 from hashlib import md5
+from flask_login import UserMixin
 
 
-class User(Base, Database):
+class User(Base, Database, UserMixin):
     __tablename__ = 'users'
     email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
@@ -22,3 +23,12 @@ class User(Base, Database):
     conversations = relationship("Conversation", backref="users",
                                  cascade="all, delete")
 
+    def __init__(self, *args, **kwargs):
+        """initializes User"""
+        super().__init__(*args, **kwargs)
+
+    def __setattr__(self, name, value):
+        """sets a password with md5 encryption"""
+        if name == "password":
+            value = md5(value.encode()).hexdigest()
+        super().__setattr__(name, value)

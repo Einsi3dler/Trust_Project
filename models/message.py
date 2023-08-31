@@ -9,3 +9,8 @@ class Message(Base, Database):
     conversation_id = Column(String(60), ForeignKey("Conversations.id"), nullable=False)
     user1_messages = Column(String(2048), nullable=True)
     user2_messages = Column(String(2048), nullable=True)
+
+
+    def __init__(self, *args, **kwargs):
+        """initializes Messages"""
+        super().__init__(*args, **kwargs)

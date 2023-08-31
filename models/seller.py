@@ -13,3 +13,8 @@ class Seller(Base, Database):
     asking_price = Column(Integer, default=0, nullable=False)
     transaction = relationship("Transaction", backref="seller",
                                cascade="all, delete")
+
+    def __init__(self, *args, **kwargs):
+        """initializes Seller"""
+        super().__init__(*args, **kwargs)
+

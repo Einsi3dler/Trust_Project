@@ -12,3 +12,7 @@ class Transaction(Base, Database):
     sold_price = Column(Integer, nullable=False, default=0)
     good_service = Column(String(128), nullable=False)
     description = Column(String(1024), nullable=True)
+
+    def __init__(self, *args, **kwargs):
+        """initializes Transaction"""
+        super().__init__(*args, **kwargs)

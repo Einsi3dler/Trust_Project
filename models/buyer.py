@@ -11,3 +11,8 @@ class Buyer(Base, Database):
     transaction = relationship("Transaction", backref="buyer",
                                cascade="all, delete")
     good_service = Column(String(128), nullable=False)
+
+    def __init__(self, *args, **kwargs):
+        """initializes Buyer"""
+        super().__init__(*args, **kwargs)
+
