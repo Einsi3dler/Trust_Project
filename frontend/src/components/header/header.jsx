@@ -3,7 +3,7 @@ import './header.css';
 
 export default function PageHeader () {
 	return (
-		<Navbar fixed="top" data-bs-theme expand="lg" collapseOnSelect  className="bg-primary header">
+		<Navbar fixed="top" expand="lg" collapseOnSelect  className="bg-primary header">
 			<Container fluid>
 			<Navbar.Brand className='logo'>TRUST</Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
