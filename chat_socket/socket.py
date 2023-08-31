@@ -2,6 +2,7 @@ from api.v1.app import app
 from flask_socketio import SocketIO, send, emit, join_room
 from models import storage
 from models.user import User
+from models.conversation import Conversation
 from flask import session
 from flask_login import current_user
 
@@ -21,13 +22,11 @@ def join(data):
 def handle_message(data):
     print(data)
     if session.get("id") is None:
-        username = current_user.id
+        userId = current_user.id
+        conversation = current_user.conversation
     else:
-        username = session['id']
-    user = storage.get(User, )
-    if user.workspace_list:
-        wlist = user.workspace_list.split()
-        wid = int(wlist[0])
-        room = Workspace.query.filter_by(id = wid).first()
-        join_room(room.name)
-    send({"msg": data['data']})
+        userId = session['id']
+        conversations = current_user.conversation
+
+    user = storage.get(User, userId)
+    if conversation in user.conversations:
