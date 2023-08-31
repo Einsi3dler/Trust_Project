@@ -5,7 +5,7 @@ import './login.css';
 
 export default function LoginPage () {
 return (
-	<div className="body" >
+	<div >
 	<PageHeader/>
 		<div className="page-div ">
 		<div className="auth-wrapper">

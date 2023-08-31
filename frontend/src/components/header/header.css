@@ -1,12 +1,17 @@
 body {
 	margin: 0px;
 }
-
-.nav-menu {
+.logo {
+	color: aliceblue!important;
+}
+.nav-menu a{
 	color: aliceblue;
 }
 
 #navbar-label {
 	color: aliceblue;
+}
+.offcanvas-header .btn-close  {
+	background-color: aliceblue;
 }
 

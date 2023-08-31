@@ -21,3 +21,4 @@ class User(Base, Database):
                                 cascade="all, delete")
     conversations = relationship("Conversation", backref="users",
                                  cascade="all, delete")
+

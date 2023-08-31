@@ -11,12 +11,8 @@
 	--dark-bg: #212529;
     --brShadow: -6px 6px 15px;
 }
-.body {
-	position: relative;
+body {
 	color: aliceblue;
 	background-color: var(--dark-bg);
-	min-height: 100vh;
-	max-height: 100em;
-	border-bottom: 1px solid darkblue;
 	font-family: 'Sansita', 'Handlee', sans-serif;;
 }

@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 export default function HomePage () {
 
 	return (
-		<div className="body">
+		<div>
 		<PageHeader/>
 		<main>
 			<section className="home">
