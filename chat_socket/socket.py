@@ -1,8 +1,5 @@
-from flask import Flask
+from api.v1.app import app
 from flask_socketio import SocketIO, send, emit, join_room
-from flask_cors import CORS
 
 
-app = Flask(__name__)
-app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-cors = CORS(app, resources={r"/user/<id>/*": {"origins": "*"}})
+socketio = SocketIO(app,logger=True, engineio_logger=True)

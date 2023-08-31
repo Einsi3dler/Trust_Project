@@ -1,0 +1,22 @@
+/*===== GOOGLE FONTS =====*/
+@import url('https://fonts.googleapis.com/css2?family=Arbutus+Slab&family=Handlee&family=Sansita&display=swap');
+
+:root{
+    --first-color: #121212;
+    --white-color: #acacac;
+    --dark-color: #EF7070;
+    --text-color: #3EBDC6;
+    --colorMain: #DE6F70;
+    --dark--white: #292929;
+	--dark-bg: #212529;
+    --brShadow: -6px 6px 15px;
+}
+.body {
+	position: relative;
+	color: aliceblue;
+	background-color: var(--dark-bg);
+	min-height: 100vh;
+	height: 100%;
+	border-bottom: 1px solid darkblue;
+	font-family: 'Sansita', 'Handlee', sans-serif;;
+}

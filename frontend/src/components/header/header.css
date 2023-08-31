@@ -1,6 +1,13 @@
 body {
 	margin: 0px;
 }
-.bg-primary span {
-	display: inline-flex;
- }
+
+ .nav-user {
+	position: absolute;
+	right: 10px;
+}
+
+.nav-menu {
+	position: absolute;
+	right: 38%;
+}

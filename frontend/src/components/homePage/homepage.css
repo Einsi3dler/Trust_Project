@@ -1,0 +1,11 @@
+.home {
+	padding-top: 15px;
+	color:aliceblue;
+	text-align: center;
+	line-height: .5em;
+}
+
+.home p {
+	margin-top: -6px;
+	line-height: 1em;
+}

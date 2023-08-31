@@ -7,9 +7,9 @@ export default function LoginPage () {
 return (
 	<>
 	<PageHeader/>
-		<div className="page-div bg-light">
+		<div className="page-div ">
 		<div className="auth-wrapper">
-          <div className="auth-inner">
+          <div className="auth-inner bg-primary">
 			<Form className="form">
         <h3>Sign In</h3>
 
@@ -45,7 +45,7 @@ return (
         </div>
 
         <div className="d-grid">
-          <Button type="submit" className="btn btn-primary">
+          <Button type="submit" className="btn btn-dark">
             Submit
           </Button>
         </div>

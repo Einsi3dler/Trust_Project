@@ -6,10 +6,10 @@ export default function SignupPage () {
 	return (
 		<>
 		<PageHeader/>
-		<div className="page-div bg-light">
+		<div className="page-div">
 
 		<div className="auth-wrapper">
-			<div className="auth-inner" id="signup">
+			<div className="auth-inner bg-primary" id="signup">
 		<Form className="form">
         <h3>Sign Up</h3>
 
@@ -46,7 +46,7 @@ export default function SignupPage () {
         </div>
 
         <div className="d-grid">
-          <Button type="submit" className="btn btn-primary">
+          <Button type="submit" className="btn btn-dark">
             Sign Up
           </Button>
         </div>
