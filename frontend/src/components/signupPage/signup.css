@@ -1,7 +1,6 @@
 .page-div {
 	display: flex;
 	position: relative;
-	top: 80px;
 	flex-direction: column;
 
 }

@@ -3,10 +3,10 @@ import './header.css';
 
 export default function PageHeader () {
 	return (
-		<Navbar fixed="top" expand="lg" collapseOnSelect  className="bg-primary header">
+		<Navbar  expand="lg" collapseOnSelect  className="bg-primary header">
 			<Container fluid>
 			<Navbar.Brand className='logo'>TRUST</Navbar.Brand>
-			<Navbar.Toggle aria-controls="basic-navbar-nav" />
+			<Navbar.Toggle aria-controls="basic-navbar-nav" className="m-1" />
 			<Navbar.Offcanvas
 			 id="basic-navbar-nav"
 			 aria-labelledby="navbar-label"

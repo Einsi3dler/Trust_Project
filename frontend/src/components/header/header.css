@@ -3,5 +3,10 @@ body {
 }
 
 .nav-menu {
-	color:aliceblue;
+	color: aliceblue;
 }
+
+#navbar-label {
+	color: aliceblue;
+}
+

@@ -16,7 +16,7 @@
 	color: aliceblue;
 	background-color: var(--dark-bg);
 	min-height: 100vh;
-	height: 100%;
+	max-height: 100em;
 	border-bottom: 1px solid darkblue;
 	font-family: 'Sansita', 'Handlee', sans-serif;;
 }

@@ -4,7 +4,7 @@ import PageHeader from "../header/header";
 
 export default function SignupPage () {
 	return (
-		<>
+		<div className="body">
 		<PageHeader/>
 		<div className="page-div">
 
@@ -57,6 +57,6 @@ export default function SignupPage () {
 			</div>
 			</div>
 			</div>
-			</>
+			</div>
 	)
 }

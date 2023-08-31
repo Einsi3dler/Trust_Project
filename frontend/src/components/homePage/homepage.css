@@ -1,5 +1,5 @@
 .home {
-	padding-top: 80px;
+	padding-top: 10px;
 	color:aliceblue;
 	text-align: center;
 	line-height: .5em;
@@ -8,4 +8,57 @@
 .home p {
 	margin-top: -6px;
 	line-height: 1em;
+}
+.bg-section {
+	margin-top: 25px;
+	border-radius: 7px;
+	height: 350px;
+}
+section div {
+	margin: 0 38px;
+	width: 44%;
+
+}
+.bg-image {
+	border-radius: 7px;
+	background-image: url(./images/trust.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 20em;
+	width: 40em;
+
+}
+
+.get-started {
+	border-radius: 7px;
+}
+@media screen and (max-width: 700px) {
+	section div {
+		width: 82%;
+	}
+	.bg-image {
+		height: 250px;
+		width: 80vw;
+	}
+
+	.get-started {
+		margin-top: 20px;
+	}
+}
+
+.pageInput {
+	width: 18em;
+	margin-bottom: 12px;
+}
+
+.button {
+	width: 7em;
+}
+.navbar-toggler {
+	border: 0px !important;
+
+}
+.navbar-toggler-icon {
+	width: 1em !important;
+	height: 1.1em !important;
 }
