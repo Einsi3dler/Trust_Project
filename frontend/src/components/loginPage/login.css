@@ -1,6 +1,7 @@
 .page-div {
+	position: relative;
+	top: 80px;
 	display: flex;
-	padding-top: 20px;
 	flex-direction: column;
 
 }

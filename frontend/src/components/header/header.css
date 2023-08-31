@@ -2,12 +2,6 @@ body {
 	margin: 0px;
 }
 
- .nav-user {
-	position: absolute;
-	right: 10px;
-}
-
 .nav-menu {
-	position: absolute;
-	right: 38%;
+	color:aliceblue;
 }
