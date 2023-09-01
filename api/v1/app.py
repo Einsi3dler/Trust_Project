@@ -35,10 +35,14 @@ def close_db(error):
     storage.close()
 
 
-@app.errorhandler(404)
-def not_found(error):
-    """ 404 Error"""
-    return make_response(jsonify({'error': "Not found"}), 404)
+def make_error(status_code, message, action=None):
+    response = jsonify({
+        'status': status_code,
+        'message': message,
+        'action': action
+    })
+    response.status_code = status_code
+    return response
 
 
 if __name__ == '__main__':

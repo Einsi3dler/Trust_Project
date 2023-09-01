@@ -1,6 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 import PageHeader from "../header/header";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import './login.css';
 
@@ -8,31 +9,45 @@ import './login.css';
 
 export default function LoginPage () {
   const api = "http://localhost:5000/auth/login";
-  const [errorMessages, setErrorMessages] = useState({});
+  const [errorMessages, setErrorMessages] = useState();
   const [isValid, setIsValid] = useState(false);
   const [logUserData, setLogUserData] = useState();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
 	// Stop the default submit and page load
-	event.preventDefault()
 
-	const loginHtmlForm = document.getElementById("login-form")
-	const loginFormData = new FormData(loginHtmlForm)
+	const loginHtmlForm = document.getElementById("login-form");
+	const loginFormData = new FormData(loginHtmlForm);
 
 	// Handle validations
 	axios
 		.post(api, loginFormData)
 		.then(response => {
-		console.log(response)
-		setIsValid(true)
-		setLogUserData(response.data)
+		console.log(response);
+		setIsValid(true);
+		setLogUserData(response.data);
 		})
 		.catch(error => {
 			if (error.response) {
-				console.log(error.response)
-				setErrorMessages(error.response.data)
+				console.log(error.response);
+				setErrorMessages(error.response.data.message);
 			}
 		})
+	}
+
+	const handleRedirect = (event) => {
+		event.preventDefault()
+		handleSubmit();
+		if (isValid) {
+			document.location.href="/chat";
+		}
+		else {
+			console.log(errorMessages)
+			const formDiv = document.getElementById("error_msg");
+			formDiv.innerHTML = `${errorMessages}`;
+			formDiv.style.display = "grid";
+		}
+
 	}
 
 	return (
@@ -40,6 +55,7 @@ export default function LoginPage () {
 	<PageHeader/>
 		<div className="page-div ">
 		<div className="auth-wrapper">
+		<p id="error_msg" className="text-center"></p>
           <div className="auth-inner bg-primary">
 			<Form id="login-form" method="POST">
         <h3>Sign In</h3>
@@ -82,7 +98,7 @@ export default function LoginPage () {
         </div>
 
         <div className="d-grid">
-          <Button type="submit" onClick={handleSubmit} className="btn btn-dark">
+          <Button type="submit" onClick={handleRedirect} className="btn btn-dark">
             Submit
           </Button>
         </div>

@@ -5,6 +5,7 @@ from models import storage
 from flask import request, session, abort, jsonify, redirect
 from flask_login import login_user
 from hashlib import md5
+from api.v1.app import make_error
 
 
 @auth_views.route('/login', methods=['GET', 'POST'])
@@ -19,14 +20,13 @@ def login():
 
         for keys, data in user_data.items():
             if not data:
-                error = "Please fill in your {}".format(data)
-                error_json = {keys : error}
-                abort(404, **error_json)
+                error = "Please fill in your {}".format(keys)
+                return make_error(404, error)
             user = storage.get(User, data={keys: data}).values()
-            if user is None:
-                error = "Please try again, wrong {}".format(data)
-                error_json = {keys : error}
-                abort(404, **error_json)
+            if not user:
+                error = "Please try again, wrong {}".format(keys)
+                return make_error(404, error)
+
 
         user = list(storage.get(User, data=user_data).values())
         session["user"] = user

@@ -2,10 +2,14 @@ import { Container, Button } from "react-bootstrap";
 import './conversation.css';
 
 
-export default function ConversationPage ({user}) {
-
+export default function ConversationPage ({ user }) {
 
 	function renderConversation () {
+		if (!user){
+			return (
+			<><h2>Please login</h2></>
+			);
+		}
 		const conversation = user.conversations
 		const conversationList = [];
 		for (let i = 0; i < conversation.length; i++) {

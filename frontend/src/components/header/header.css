@@ -17,12 +17,17 @@ body {
 @media screen  and (min-width: 992px){
 	#nav-signup {
 		border-radius: 6px;
-		border: 1px solid aliceblue;
+		margin-left: 20px;
+		width: 7em;
+		text-align: center;
 		background-color: var(--bs-primary);
-
+		box-shadow: -6px 6px 15px var(--dark-bg);
 	}
 	.nav-menu #nav-signup:hover {
 		color: black;
+	}
+	.header {
+		margin: 0px 80px;
 	}
 
 }

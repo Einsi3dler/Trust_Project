@@ -52,3 +52,7 @@
 	margin: 0;
 	color: aqua;
   }
+
+  #error_msg {
+	display: none;
+  }
