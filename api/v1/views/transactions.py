@@ -10,7 +10,7 @@ from flask import abort, jsonify, make_response, request
 
 app_views.strict_slashes = False
 
-@app_views.route("/transactions", method=['GET'])
+@app_views.route("/transactions", methods=['GET'])
 def get_transactions():
     """Get all transactions"""
     all_transactions = storage.all(Transaction).values()
@@ -19,7 +19,7 @@ def get_transactions():
         transaction_list.append(transaction.to_dict())
     return jsonify(transaction_list)
 
-@app_views.route("users/<user_id>/transactions", method=['GET'])
+@app_views.route("users/<user_id>/transactions", methods=['GET'])
 def get_user_transactions(user_id):
 	user = storage.get(User, user_id)
 	if not user:
@@ -29,7 +29,7 @@ def get_user_transactions(user_id):
 		transaction_list.append(transaction.to_dict())
 	return jsonify(transaction_list)
 
-@app_views.route("user/<seller_id>/<buyer_id>/transactions", method=['POST'])
+@app_views.route("user/<seller_id>/<buyer_id>/transactions", methods=['POST'])
 def post_user_transactions(seller_id, buyer_id):
     seller = storage.get(User, seller_id)
     if not seller:
@@ -48,8 +48,8 @@ def post_user_transactions(seller_id, buyer_id):
     new_transaction.save
     return make_response(jsonify(new_transaction), 201)
 
-@app_views.route("users/<user_id>/transactions/<transaction_id>", method=['DELETE'])
-def delete_user_transactions(user_id, transaction_id):
+@app_views.route("users/<user_id>/transactions/<transaction_id>", methods=['DELETE'])
+def delete_transactions(user_id, transaction_id):
     user = storage.get(User, user_id)
     if not user:
         abort(404)

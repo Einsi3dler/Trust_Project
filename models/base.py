@@ -41,7 +41,7 @@ class Base:
                                          self.__dict__)
 
     def save(self):
-        """updates the attribute 'updated_at' with the current datetime"""
+        """Save new instance to database"""
         self.updated_at = datetime.utcnow()
         models.storage.new(self)
         models.storage.save()

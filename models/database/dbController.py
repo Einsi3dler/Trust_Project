@@ -10,7 +10,10 @@ from models.conversation import Conversation
 from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from dotenv import load_dotenv
 
+
+load_dotenv()
 classes = {"Transaction": Transaction, "User": User, "Message": Message, "Converation": Conversation, "Seller":Seller, "BUyer": Buyer}
 
 
@@ -66,7 +69,7 @@ class DBStorage:
         """call remove() method on the private session attribute"""
         self.__session.remove()
 
-    def get(self, cls, id):
+    def get(self, cls, id=None, **kwargs):
         """
         Returns the object based on the class name and its ID, or
         None if not found
@@ -74,12 +77,22 @@ class DBStorage:
         if cls not in classes.values():
             return None
 
-        all_cls = models.storage.all(cls)
-        for value in all_cls.values():
-            if (value.id == id):
-                return value
-
+        result_dict = {}
+        if id is not None:
+            objs = self.__session.query(classes[cls]).filter_by(id = id)
+            for obj in objs:
+                key = obj.__class__.__name__ + '.' + obj.id
+                result_dict[key] = obj
+            return result_dict.to_dict()
+        elif kwargs:
+            objs = self.__session.query(classes[cls]).filter_by(kwargs)
+            for obj in objs:
+                key = obj.__class__.__name__ + '.' + obj.id
+                result_dict[key] = obj
+            return result_dict.to_dict()
         return None
+
+
 
     def count(self, cls=None):
         """

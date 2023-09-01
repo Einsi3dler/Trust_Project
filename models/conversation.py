@@ -7,6 +7,8 @@ from sqlalchemy.orm import relationship
 
 class Conversation(Base, Database):
     __tablename__ = 'Conversations'
+    name = Column(String(60), nullable=False)
+    chatted_user_id =  Column(String(60), ForeignKey("users.id"), nullable=False)
     messages = relationship("Message", backref="conversation",
                             cascade="all, delete")
 

@@ -6,9 +6,10 @@ from os import environ
 from flask import Flask, make_response, jsonify
 from flask_cors import CORS
 from flask_session import Session
+from dotenv import load_dotenv
 
 
-
+load_dotenv()
 app = Flask(__name__)
 Session(app)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True

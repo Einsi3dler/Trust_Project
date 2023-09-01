@@ -19,6 +19,7 @@ return (
             type="email"
             className="form-control"
             placeholder="Enter email"
+			name="email"
           />
         </div>
 
@@ -28,6 +29,7 @@ return (
             type="password"
             className="form-control"
             placeholder="Enter password"
+			name="password"
           />
         </div>
 

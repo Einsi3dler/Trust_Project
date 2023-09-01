@@ -19,12 +19,13 @@ export default function SignupPage () {
             type="text"
             className="form-control"
             placeholder="First name"
+			name="first_name"
           />
         </div>
 
         <div className="mb-3">
           <label>Last name</label>
-          <input type="text" className="form-control" placeholder="Last name" />
+          <input type="text" className="form-control" placeholder="Last name" name="last_name"/>
         </div>
 
         <div className="mb-3">
@@ -33,6 +34,7 @@ export default function SignupPage () {
             type="email"
             className="form-control"
             placeholder="Enter email"
+			name="email"
           />
         </div>
 
@@ -42,6 +44,7 @@ export default function SignupPage () {
             type="password"
             className="form-control"
             placeholder="Enter password"
+			name="password"
           />
         </div>
 
