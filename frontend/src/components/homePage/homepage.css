@@ -54,11 +54,3 @@ section div {
 .button {
 	width: 7em;
 }
-.navbar-toggler {
-	border: 0px !important;
-
-}
-.navbar-toggler-icon {
-	width: 1em !important;
-	height: 1.1em !important;
-}

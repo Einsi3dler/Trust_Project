@@ -2,7 +2,7 @@ body {
 	margin: 0px;
 }
 .logo {
-	color: aliceblue!important;
+	color: aliceblue !important;
 }
 .nav-menu a{
 	color: aliceblue;
@@ -15,3 +15,22 @@ body {
 	background-color: aliceblue;
 }
 
+.navbar-toggler-icon {
+	width: 1em !important;
+	height: 1.1em !important;
+	position: relative;
+	right: 7px;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-toggler {
+	border: 0px !important;
+    color: rgba(255,255,255,.55) !important;
+	width: 1.5em !important;
+}
+
+@media screen and (max-width: 1000px) {
+	.nav-menu a {
+		border-bottom: 1px solid rgba(255,255,255,.55);
+	}
+}
