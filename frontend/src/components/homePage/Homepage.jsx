@@ -9,8 +9,8 @@ export default function HomePage () {
 		<PageHeader/>
 		<main>
 			<section className="home">
-				<h3>Welcome to Trust</h3>
-				<h5>Home of secure businesses and transactions</h5>
+				<h2>Welcome to Trust</h2>
+				<h3>Home of secure businesses and transactions</h3>
 				<p>Dealing without trust, don't gamble. Let Trust be your middleman</p>
 			</section>
 			<section className="bg-section d-grid d-lg-flex d-md-flex">

@@ -1,7 +1,20 @@
 import { Container, Button } from "react-bootstrap";
 import './conversation.css';
 
-export default function ConversationPage () {
+
+export default function ConversationPage ({user}) {
+
+
+	function renderConversation () {
+		const conversation = user.conversations
+		const conversationList = [];
+		for (let i = 0; i < conversation.length; i++) {
+		  conversationList.push(<section className="chattedUser">
+			<div className="d-grid "><span> {conversation[i]} </span></div>
+		</section>);
+		}
+		return conversationList;
+	  };
 	return (
 		<>
 		<Container fluid>
@@ -13,6 +26,7 @@ export default function ConversationPage () {
 		</div>
 		<section className="chattedUser">
 			<div className="d-grid "><span> John</span></div>
+			{renderConversation()}
 		</section>
 		</aside>
 		<section >

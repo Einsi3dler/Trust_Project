@@ -2,10 +2,29 @@ body {
 	margin: 0px;
 }
 .logo {
+	left: 40px;
 	color: aliceblue !important;
 }
 .nav-menu a{
 	color: aliceblue;
+
+}
+
+.nav-menu a:hover {
+	color: var(--bs-primary);
+	border-bottom: 3px solid aliceblue;
+}
+@media screen  and (min-width: 992px){
+	#nav-signup {
+		border-radius: 6px;
+		border: 1px solid aliceblue;
+		background-color: var(--bs-primary);
+
+	}
+	.nav-menu #nav-signup:hover {
+		color: black;
+	}
+
 }
 
 #navbar-label {
@@ -29,7 +48,7 @@ body {
 	width: 1.5em !important;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 991px) {
 	.nav-menu a {
 		border-bottom: 1px solid rgba(255,255,255,.55);
 		transition: none;
@@ -37,4 +56,9 @@ body {
 	.nav-menu a:hover {
 		color: var(--bs-primary);
 	}
+
+}
+
+a:active {
+	color: var(--bs-primary) !important;
 }

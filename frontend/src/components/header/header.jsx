@@ -3,7 +3,7 @@ import './header.css';
 
 export default function PageHeader () {
 	return (
-		<Navbar  expand="lg" collapseOnSelect  className="bg-primary header">
+		<Navbar  expand="lg" collapseOnSelect  className="header">
 			<Container fluid>
 			<Navbar.Brand className='logo'>TRUST</Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" className="m-1" />
@@ -19,16 +19,16 @@ export default function PageHeader () {
             </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-         	 <Nav className="nav-menu justify-content-end flex-grow-1 pe-3">
-			<Nav.Link>Home</Nav.Link>
+         	 <Nav className="nav-menu justify-content-end flex-grow-1 pe-3" id="nav-menu">
+			<Nav.Link href="/">Home</Nav.Link>
 			<Nav.Link>Features</Nav.Link>
 			<Nav.Link>Contact</Nav.Link>
 			<Nav.Link>About</Nav.Link>
 			<Nav.Link>Services</Nav.Link>
 			</Nav>
 			<Nav className="nav-menu justify-content-end flex-grow-1 pe-3">
-			<Nav.Link href="/sign-in">Sign In </Nav.Link>
-			<Nav.Link href="/sign-up">Sign Up </Nav.Link>
+			<Nav.Link id="nav-signin" href="/login">Log In </Nav.Link>
+			<Nav.Link id="nav-signup" href="/signup">Sign Up </Nav.Link>
 			</Nav>
 			</Offcanvas.Body>
 			</Navbar.Offcanvas>

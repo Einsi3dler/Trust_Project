@@ -7,7 +7,33 @@ import './login.css';
 
 
 export default function LoginPage () {
+  const api = "http://localhost:5000/auth/login";
+  const [errorMessages, setErrorMessages] = useState({});
+  const [isValid, setIsValid] = useState(false);
+  const [logUserData, setLogUserData] = useState();
 
+  const handleSubmit = (event) => {
+	// Stop the default submit and page load
+	event.preventDefault()
+
+	const loginHtmlForm = document.getElementById("login-form")
+	const loginFormData = new FormData(loginHtmlForm)
+
+	// Handle validations
+	axios
+		.post(api, loginFormData)
+		.then(response => {
+		console.log(response)
+		setIsValid(true)
+		setLogUserData(response.data)
+		})
+		.catch(error => {
+			if (error.response) {
+				console.log(error.response)
+				setErrorMessages(error.response.data)
+			}
+		})
+	}
 
 	return (
 	<div >
@@ -15,7 +41,7 @@ export default function LoginPage () {
 		<div className="page-div ">
 		<div className="auth-wrapper">
           <div className="auth-inner bg-primary">
-			<Form action="http://localhost:5000/auth/login" method="POST" id="login-form">
+			<Form id="login-form" method="POST">
         <h3>Sign In</h3>
 
         <div className="mb-3">
@@ -27,7 +53,6 @@ export default function LoginPage () {
 			id="email"
 			name="email"
 			required
-
           />
         </div>
 
@@ -49,7 +74,6 @@ export default function LoginPage () {
               type="checkbox"
               className="custom-control-input"
               id="customCheck1"
-
             />
             <label className="custom-control-label" htmlFor="customCheck1">
               Remember me
@@ -58,7 +82,7 @@ export default function LoginPage () {
         </div>
 
         <div className="d-grid">
-          <Button type="submit" className="btn btn-dark">
+          <Button type="submit" onClick={handleSubmit} className="btn btn-dark">
             Submit
           </Button>
         </div>

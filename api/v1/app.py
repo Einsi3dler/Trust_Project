@@ -22,7 +22,7 @@ Session(app)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(app_views)
 app.register_blueprint(auth_views)
-cors = CORS(app, resources={r"*": {"origins": "*"}})
+CORS(app)
 
 
 @login_manager.user_loader
