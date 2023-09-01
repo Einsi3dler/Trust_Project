@@ -59,4 +59,3 @@ def signup():
         new_user.save()
         session['user'] = new_user.to_dict()
         return redirect("http://localhost:3000/login")
-
