@@ -32,5 +32,9 @@ body {
 @media screen and (max-width: 1000px) {
 	.nav-menu a {
 		border-bottom: 1px solid rgba(255,255,255,.55);
+		transition: none;
+	}
+	.nav-menu a:hover {
+		color: var(--bs-primary);
 	}
 }
