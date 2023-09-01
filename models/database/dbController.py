@@ -69,7 +69,7 @@ class DBStorage:
         """call remove() method on the private session attribute"""
         self.__session.remove()
 
-    def get(self, cls, id=None, **kwargs):
+    def get(self, cls, id=None, data=None):
         """
         Returns the object based on the class name and its ID, or
         None if not found
@@ -79,17 +79,17 @@ class DBStorage:
 
         result_dict = {}
         if id is not None:
-            objs = self.__session.query(classes[cls]).filter_by(id = id)
+            objs = self.__session.query(cls).filter_by(id = id)
             for obj in objs:
                 key = obj.__class__.__name__ + '.' + obj.id
                 result_dict[key] = obj
-            return result_dict.to_dict()
-        elif kwargs:
-            objs = self.__session.query(classes[cls]).filter_by(kwargs)
+            return result_dict
+        elif data:
+            objs = self.__session.query(cls).filter_by(**data)
             for obj in objs:
                 key = obj.__class__.__name__ + '.' + obj.id
                 result_dict[key] = obj
-            return result_dict.to_dict()
+            return result_dict
         return None
 
 

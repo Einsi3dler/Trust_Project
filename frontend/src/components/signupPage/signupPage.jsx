@@ -3,6 +3,8 @@ import PageHeader from "../header/header";
 
 
 export default function SignupPage () {
+
+
 	return (
 		<div>
 		<PageHeader/>
@@ -10,7 +12,7 @@ export default function SignupPage () {
 
 		<div className="auth-wrapper">
 			<div className="auth-inner bg-primary" id="signup">
-		<Form className="form">
+		<Form className="form" action="http://localhost:5000/auth/signup" method="POST">
         <h3>Sign Up</h3>
 
         <div className="mb-3">
@@ -20,12 +22,17 @@ export default function SignupPage () {
             className="form-control"
             placeholder="First name"
 			name="first_name"
+			id="first_name"
+			required
           />
         </div>
 
         <div className="mb-3">
           <label>Last name</label>
-          <input type="text" className="form-control" placeholder="Last name" name="last_name"/>
+          <input type="text" className="form-control" placeholder="Last name"
+		  name="last_name"
+		  id="last_name"
+		  required/>
         </div>
 
         <div className="mb-3">
@@ -35,6 +42,8 @@ export default function SignupPage () {
             className="form-control"
             placeholder="Enter email"
 			name="email"
+			id="email"
+			required
           />
         </div>
 
@@ -45,6 +54,8 @@ export default function SignupPage () {
             className="form-control"
             placeholder="Enter password"
 			name="password"
+			id="password"
+			required
           />
         </div>
 

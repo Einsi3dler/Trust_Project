@@ -20,7 +20,7 @@ def get_users():
 @app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
 def get_user(user_id):
     """ Retrieves an user """
-    user = storage.get(User, user_id)
+    user = storage.get(User, user_id).values()
     if not user:
         abort(404)
 
@@ -34,7 +34,7 @@ def delete_user(user_id):
     Deletes a user Object
     """
 
-    user = storage.get(User, user_id)
+    user = storage.get(User, user_id).values()
 
     if not user:
         abort(404)
@@ -69,7 +69,7 @@ def put_user(user_id):
     """
     Updates a user
     """
-    user = storage.get(User, user_id)
+    user = storage.get(User, user_id).values()
 
     if not user:
         abort(404)

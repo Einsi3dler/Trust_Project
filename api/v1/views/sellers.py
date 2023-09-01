@@ -20,14 +20,14 @@ def get_sellers():
 
 @app_views.route("/sellers/<seller_id>", methods=['GET'])
 def get_seller(seller_id):
-	seller = storage.get(Seller, seller_id)
+	seller = storage.get(Seller, seller_id).values()
 	if not seller:
 		abort(404)
 	return jsonify(seller.to_dict())
 
 @app_views.route("/sellers/<seller_id>", methods=['POST'])
 def post_seller(seller_id):
-    seller = storage.get(Seller, seller_id)
+    seller = storage.get(Seller, seller_id).values()
     if not seller:
         abort(404)
     if not request.get_json():
@@ -43,7 +43,7 @@ def post_seller(seller_id):
 
 @app_views.route("/sellers/<seller_id>", methods=['DELETE'])
 def delete_user_transactions(seller_id):
-    seller = storage.get(Seller, seller_id)
+    seller = storage.get(Seller, seller_id).values()
     if not seller:
         abort(404)
     storage.delete(seller)

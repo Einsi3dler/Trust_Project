@@ -1,16 +1,21 @@
 import { Form, Button } from "react-bootstrap";
 import PageHeader from "../header/header";
+import { useState } from "react";
+import axios from "axios";
 import './login.css';
 
 
+
 export default function LoginPage () {
-return (
+
+
+	return (
 	<div >
 	<PageHeader/>
 		<div className="page-div ">
 		<div className="auth-wrapper">
           <div className="auth-inner bg-primary">
-			<Form className="form">
+			<Form action="http://localhost:5000/auth/login" method="POST" id="login-form">
         <h3>Sign In</h3>
 
         <div className="mb-3">
@@ -19,7 +24,10 @@ return (
             type="email"
             className="form-control"
             placeholder="Enter email"
+			id="email"
 			name="email"
+			required
+
           />
         </div>
 
@@ -30,6 +38,8 @@ return (
             className="form-control"
             placeholder="Enter password"
 			name="password"
+			id="password"
+			required
           />
         </div>
 
@@ -39,6 +49,7 @@ return (
               type="checkbox"
               className="custom-control-input"
               id="customCheck1"
+
             />
             <label className="custom-control-label" htmlFor="customCheck1">
               Remember me
@@ -51,7 +62,7 @@ return (
             Submit
           </Button>
         </div>
-        <p className="forgot-password text-right">
+        <p className="forgot-password text-right" >
           Forgot <a href="/sign-up">password?</a>
         </p>
 		</Form>

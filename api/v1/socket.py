@@ -3,6 +3,7 @@ from flask_socketio import SocketIO, send, emit, join_room
 from models import storage
 from models.user import User
 from models.conversation import Conversation
+from models.message import Message
 from flask import session
 from flask_login import current_user
 
@@ -20,12 +21,14 @@ def send_msg(data):
 
 
     user = storage.get(User, user_id)
-    chatted_user = data['chatted_user_id']
-    for chatted in user.conversations:
-        if chatted.chatted_user_id == chatted_user:
-            room = chatted
+    conversation_id = data['conversation_id']
+    for conversation in user.conversations:
+        if conversation.id == conversation_id:
+            room = conversation
             join_room(room.name)
     print(data['message'])
+    new_message = Message({"conversation_id": conversation_id, "user1_message": data.get("message")})
+    new_message.save()
     send({"msg": data['message'], "conversation_id": room.id})
 
 
@@ -41,7 +44,9 @@ def join(data):
         #Start new conversation
         new_conversation = Conversation(data)
         new_conversation.save()
+        conversation_id = new_conversation.id
         room = new_conversation.name
+        data['conversation_id'] = conversation_id
         join_room(room)
     print("Connected")
 

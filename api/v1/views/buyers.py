@@ -21,14 +21,14 @@ def get_buyers():
 
 @app_views.route("buyers/<buyer_id>", methods=['GET'])
 def get_buyer(buyer_id):
-	buyer = storage.get(Buyer, buyer_id)
+	buyer = storage.get(Buyer, buyer_id).values()
 	if not buyer:
 		abort(404)
 	return jsonify(buyer.to_dict())
 
 @app_views.route("buyers/<buyer_id>", methods=['POST'])
 def post_buyer(buyer_id):
-    buyer = storage.get(Buyer, buyer_id)
+    buyer = storage.get(Buyer, buyer_id).values()
     if not buyer:
         abort(404)
     if not request.get_json():
@@ -44,7 +44,7 @@ def post_buyer(buyer_id):
 
 @app_views.route("buyers/<buyer_id>", methods=['DELETE'])
 def delete_buyer_transactions(buyer_id):
-    buyer = storage.get(Buyer, buyer_id)
+    buyer = storage.get(Buyer, buyer_id).values()
     if not buyer:
         abort(404)
     storage.delete(buyer)

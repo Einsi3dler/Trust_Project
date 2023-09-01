@@ -1,21 +1,13 @@
 from flask_login import LoginManager
-from api.v1.app import app
+from api.v1.views import auth_views
 from models.user import User
 from models import storage
-from flask import request, session
+from flask import request, session, abort, jsonify, redirect
 from flask_login import login_user
 from hashlib import md5
 
-login_manager = LoginManager()
 
-login_manager.init_app(app)
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return storage.get(User, user_id)
-
-@app.route('/login', methods=['GET', 'POST'])
+@auth_views.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         form = request.form
@@ -25,22 +17,25 @@ def login():
         user_data['password'] = md5(password.encode()).hexdigest()
         remember = True if request.form.get('remember') else False
 
-        for data in user_data:
+        for keys, data in user_data.items():
             if not data:
-                error = "Please fill all required details"
-                return error
-            user = storage.get(User, **data)
+                error = "Please fill in your {}".format(data)
+                error_json = {keys : error}
+                abort(404, **error_json)
+            user = storage.get(User, data={keys: data}).values()
             if user is None:
-                error = "Please try again, wrong {}".format(data.values())
-                return error
+                error = "Please try again, wrong {}".format(data)
+                error_json = {keys : error}
+                abort(404, **error_json)
 
-        user = storage.get(User, **user_data)
-        session.pop('user', None)
-        login_user(user, remember=remember)
+        user = list(storage.get(User, data=user_data).values())
+        session["user"] = user
+        login_user(user[0], remember=remember)
+        return jsonify(user[0].to_dict())
 
 
 
-@app.route('/signup', methods=['GET', 'POST'])
+@auth_views.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         form = request.form
@@ -55,11 +50,13 @@ def signup():
             if not data:
                 error = "Please fill all required details"
                 return error
-        if storage.get(User, {'email': user_data['email']}):
+
+        if storage.get(User, data={'email': user_data['email']}).values():
             error = "Please try again, email already taken"
             return error
 
-        new_user = User(user_data)
+        new_user = User(**user_data)
         new_user.save()
-        session.pop('username', None)
+        session['user'] = new_user.to_dict()
+        return redirect("http://localhost:3000/login")
 

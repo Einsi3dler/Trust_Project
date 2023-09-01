@@ -21,7 +21,7 @@ def get_transactions():
 
 @app_views.route("users/<user_id>/transactions", methods=['GET'])
 def get_user_transactions(user_id):
-	user = storage.get(User, user_id)
+	user = storage.get(User, user_id).values()
 	if not user:
 		abort(404)
 	transaction_list = []
@@ -31,10 +31,10 @@ def get_user_transactions(user_id):
 
 @app_views.route("user/<seller_id>/<buyer_id>/transactions", methods=['POST'])
 def post_user_transactions(seller_id, buyer_id):
-    seller = storage.get(User, seller_id)
+    seller = storage.get(User, seller_id).values()
     if not seller:
         abort(404)
-    buyer = storage.get(User, buyer_id)
+    buyer = storage.get(User, buyer_id).values()
     if not buyer:
         abort(404)
     if not request.get_json():
@@ -50,7 +50,7 @@ def post_user_transactions(seller_id, buyer_id):
 
 @app_views.route("users/<user_id>/transactions/<transaction_id>", methods=['DELETE'])
 def delete_transactions(user_id, transaction_id):
-    user = storage.get(User, user_id)
+    user = storage.get(User, user_id).values()
     if not user:
         abort(404)
     transaction = storage.get(Transaction, transaction_id)
