@@ -2,13 +2,14 @@
     <head>
         <title>Flask-SocketIO-Chat: {{ room }}</title>
         <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
-        <script type="text/javascript" src="//cdn.socket.io/4.4.1/socket.io.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
         <script type="text/javascript" charset="utf-8">
             var socket;
             $(document).ready(function(){
-                socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
+                socket = io.connect('http://localhost:5000');
                 socket.on('connect', function() {
-                    socket.emit('joined', {});
+					console.log("connected")
+                    socket.emit('join', {name: "test"});
                 });
                 socket.on('status', function(data) {
                     $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
@@ -23,7 +24,7 @@
                     if (code == 13) {
                         text = $('#text').val();
                         $('#text').val('');
-                        socket.emit('text', {msg: text});
+                        socket.emit('send_msg', {msg: text});
                     }
                 });
             });

@@ -7,7 +7,7 @@ from flask import session
 from flask_login import current_user
 
 
-socketio = SocketIO(app, logger=True, engineio_logger=True, manage_session=False)
+socketio = SocketIO(app, logger=True, engineio_logger=True, manage_session=False, cors_allowed_origins="*")
 
 
 @socketio.on('send_msg')
@@ -43,5 +43,7 @@ def join(data):
         new_conversation.save()
         room = new_conversation.name
         join_room(room)
+    print("Connected")
 
-
+if __name__ == '__main__':
+    socketio.run(app, debug=True, port=5000)
