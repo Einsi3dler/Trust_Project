@@ -1,7 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 import PageHeader from "../header/header";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './login.css';
 
@@ -10,8 +10,8 @@ import './login.css';
 export default function LoginPage () {
   const api = "http://localhost:5000/auth/login";
   const [errorMessages, setErrorMessages] = useState();
-  const [isValid, setIsValid] = useState(false);
   const [logUserData, setLogUserData] = useState();
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
 	// Stop the default submit and page load
@@ -20,12 +20,14 @@ export default function LoginPage () {
 	const loginFormData = new FormData(loginHtmlForm);
 
 	// Handle validations
-	axios
-		.post(api, loginFormData)
+	axios.post(api, loginFormData)
 		.then(response => {
-		console.log(response);
-		setIsValid(true);
-		setLogUserData(response.data);
+		console.log(response.data);
+		const data = response.data
+		setLogUserData(data);
+		console.log(logUserData)
+		navigate("/chat", {state: {logUserData}})
+
 		})
 		.catch(error => {
 			if (error.response) {
@@ -38,10 +40,7 @@ export default function LoginPage () {
 	const handleRedirect = (event) => {
 		event.preventDefault()
 		handleSubmit();
-		if (isValid) {
-			document.location.href="/chat";
-		}
-		else {
+		if (errorMessages) {
 			console.log(errorMessages)
 			const formDiv = document.getElementById("error_msg");
 			formDiv.innerHTML = `${errorMessages}`;
@@ -103,7 +102,7 @@ export default function LoginPage () {
           </Button>
         </div>
         <p className="forgot-password text-right" >
-          Forgot <a href="/sign-up">password?</a>
+          Forgot <a href="/signup">password?</a>
         </p>
 		</Form>
 		</div>

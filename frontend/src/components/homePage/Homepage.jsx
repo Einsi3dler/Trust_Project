@@ -9,17 +9,17 @@ export default function HomePage () {
 		<PageHeader/>
 		<main>
 			<section className="home">
-				<h2>Welcome to Trust</h2>
+				<h2>Welcome to <span className="text-primary">Trust</span></h2>
 				<h3>Home of secure businesses and transactions</h3>
-				<p>Dealing without trust, don't gamble. Let Trust be your middleman</p>
+				<p>Dealing without trust, don't gamble. Let <span className="text-primary">Trust</span> be your middleman</p>
 			</section>
 			<section className="bg-section d-grid d-lg-flex d-md-flex">
 				<div className="bg-image">
 				</div>
 				<div className="get-started">
-					<h3>Start buying and selling with Trust Escrow</h3>
+					<h3>Start buying and selling with <span className="text-primary">Trust</span> Escrow</h3>
 					<article>
-						Register to buy and sell without worries online, <b>Trust</b> got your back
+						Register to buy and sell without worries online, <b><span className="text-primary">Trust</span></b> got your back
 					</article>
 					<form className="d-grid">
 						<input type="text" className="pageInput"  placeholder="I'm selling"></input>

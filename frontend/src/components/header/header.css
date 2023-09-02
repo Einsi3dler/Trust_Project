@@ -1,13 +1,16 @@
 body {
 	margin: 0px;
 }
-.logo {
+.logo span {
 	left: 40px;
-	color: aliceblue !important;
+	font-size: 2em;
 }
 .nav-menu a{
 	color: aliceblue;
 
+}
+.header {
+	display: flex;
 }
 
 .nav-menu a:hover {

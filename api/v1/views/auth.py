@@ -8,7 +8,7 @@ from hashlib import md5
 from api.v1.app import make_error
 
 
-@auth_views.route('/login', methods=['GET', 'POST'])
+@auth_views.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
         form = request.form
@@ -35,7 +35,7 @@ def login():
 
 
 
-@auth_views.route('/signup', methods=['GET', 'POST'])
+@auth_views.route('/signup', methods=['POST'])
 def signup():
     if request.method == 'POST':
         form = request.form
