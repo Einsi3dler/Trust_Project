@@ -2,15 +2,17 @@
 
 from models.base import Base, Database
 from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 
 
 class Conversation(Base, Database):
-    __tablename__ = 'Conversations'
-    name = Column(String(60), nullable=False)
-    chatted_user_id =  Column(String(60), ForeignKey("users.id"), nullable=False)
-    messages = relationship("Message", backref="conversation",
-                            cascade="all, delete")
+    __tablename__ = 'conversations'
+    message = Column(String(2048), nullable=True)
+    sender_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+    receiver_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+
+    sender = relationship("User", backref="sender", foreign_keys=[sender_id])
+    receiver = relationship("User", backref="receiver", foreign_keys=[receiver_id])
 
     def __init__(self, *args, **kwargs):
         """initializes Conversation"""

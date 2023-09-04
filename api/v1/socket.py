@@ -3,52 +3,64 @@ from flask_socketio import SocketIO, send, emit, join_room
 from models import storage
 from models.user import User
 from models.conversation import Conversation
-from models.message import Message
-from flask import session
+from flask import session, request
 from flask_login import current_user
+from dotenv import load_dotenv
+from os import environ
 
 
+
+load_dotenv()
 socketio = SocketIO(app, logger=True, engineio_logger=True, manage_session=False, cors_allowed_origins="*")
+
+online_users = []
+def find_receiver_sid(receiver_id):
+    for online_user in online_users:
+        if list(online_user.keys())[0] == receiver_id:
+            return online_user[receiver_id]
+
+@socketio.on('add_user')
+def add_user(user_id):
+    user = list(storage.get(User, user_id).values())[0]
+    if user is not None:
+        online_users.append({user_id: request.sid})
 
 
 @socketio.on('send_msg')
 def send_msg(data):
-    print(data)
-    if session.get("user") is None:
-        user_id = current_user.id
-    else:
-        user_id = session.get("user").id
 
+    user_id = data['sender_id']
 
-    user = storage.get(User, user_id)
-    conversation_id = data['conversation_id']
-    for conversation in user.conversations:
-        if conversation.id == conversation_id:
-            room = conversation
-            join_room(room.name)
+    user = list(storage.get(User, user_id).values())[0]
+    conversation_data = {"message": data['message'], "sender_id": user.id, "receiver_id": data["receiver_id"]}
+    conversation = Conversation(**conversation_data)
+    conversation.save()
+    user.conversations.append(conversation)
+    user.save()
     print(data['message'])
-    new_message = Message({"conversation_id": conversation_id, "user1_message": data.get("message")})
-    new_message.save()
-    send({"msg": data['message'], "conversation_id": room.id})
+    receiver_sid = find_receiver_sid(data['receiver_id'])
+    emit("receive_msg", {"msg": conversation.to_dict(), "receiver_id": data['receiver_id']}, to=receiver_sid)
 
 
 
-@socketio.on('join', namespace='/chat')
-def join(data):
-    conversation_id = data.get("conversation_id")
-    if conversation_id:
-        conversation = storage.get(Conversation, id=conversation_id)
-        room = conversation.name
-        join_room(room)
-    else:
-        #Start new conversation
-        new_conversation = Conversation(data)
-        new_conversation.save()
-        conversation_id = new_conversation.id
-        room = new_conversation.name
-        data['conversation_id'] = conversation_id
-        join_room(room)
-    print("Connected")
+@socketio.on('send_img')
+def send_image(data):
+    user_id = data.get("receiver_id")
+    user = storage.get(User, user_id).values()[0]
+    if user is None:
+        return None
+    conversation_id = data.get("msg")[id]
+    conversation = storage.get(Conversation, conversation_id)
+    user.conversations.append(conversation)
+    print(data.get("msg")['message'])
+    emit('receiveClient')
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, port=5000)
+    """ Main Function """
+    host = environ.get('HBNB_API_HOST')
+    port = environ.get('HBNB_API_PORT')
+    if not host:
+        host = '0.0.0.0'
+    if not port:
+        port = '5000'
+    socketio.run(app, host=host, port=port)

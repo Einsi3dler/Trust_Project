@@ -14,10 +14,10 @@ app_views.strict_slashes = False
 def get_buyers():
     """Get all buyers"""
     all_buyers = storage.all(Transaction).values()
-    seller_list = []
+    buyer_list = []
     for buyer in all_buyers:
-        seller_list.append(buyer.to_dict())
-    return jsonify(seller_list)
+        buyer_list.append(buyer.to_dict())
+    return jsonify(buyer_list)
 
 @app_views.route("buyers/<buyer_id>", methods=['GET'])
 def get_buyer(buyer_id):

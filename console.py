@@ -8,10 +8,9 @@ from models.transaction import Transaction
 from models.base import Base
 from models.user import User
 from models.conversation import Conversation
-from models.message import Message
 import shlex  # for splitting the line along spaces except in double quotes
 
-classes = {"Transaction": Transaction, "User": User, "Conversation": Conversation, "Message": Message}
+classes = {"Transaction": Transaction, "User": User, "Conversation": Conversation}
 
 
 class TrustCommand(cmd.Cmd):

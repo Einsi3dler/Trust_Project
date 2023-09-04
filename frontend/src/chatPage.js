@@ -3,10 +3,10 @@ import { useLocation } from 'react-router-dom';
 
 export default function ChatPage () {
 	const { state } = useLocation()
-	console.log(state)
+	const user = state.logUserData
 	return (
 		<>
-		<ConversationPage  user={state}/>
+		<ConversationPage  user={user}/>
 		</>
 	)
 

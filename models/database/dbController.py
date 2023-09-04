@@ -5,7 +5,6 @@ from models.base import Database
 from models.user import User
 from models.buyer import Buyer
 from models.seller import Seller
-from models.message import Message
 from models.conversation import Conversation
 from os import getenv
 from sqlalchemy import create_engine
@@ -14,7 +13,7 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
-classes = {"Transaction": Transaction, "User": User, "Message": Message, "Converation": Conversation, "Seller":Seller, "BUyer": Buyer}
+classes = {"Transaction": Transaction, "User": User, "Conversation": Conversation, "Seller": Seller, "Buyer": Buyer}
 
 
 class DBStorage:
@@ -79,17 +78,19 @@ class DBStorage:
 
         result_dict = {}
         if id is not None:
-            objs = self.__session.query(cls).filter_by(id = id)
-            for obj in objs:
-                key = obj.__class__.__name__ + '.' + obj.id
-                result_dict[key] = obj
-            return result_dict
+            objs = self.__session.query(cls).filter_by(id = id).first()
+            if objs is not None:
+                key = objs.__class__.__name__ + '.' + objs.id
+                result_dict[key] = objs
+                return result_dict
+            return None
         elif data:
-            objs = self.__session.query(cls).filter_by(**data)
-            for obj in objs:
-                key = obj.__class__.__name__ + '.' + obj.id
-                result_dict[key] = obj
-            return result_dict
+            objs = self.__session.query(cls).filter_by(**data).first()
+            if objs is not None:
+                key = objs.__class__.__name__ + '.' + objs.id
+                result_dict[key] = objs
+                return result_dict
+            return None
         return None
 
 

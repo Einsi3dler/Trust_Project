@@ -1,10 +1,22 @@
 #!/usr/bin/python3
 
 from models.base import Base, Database
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from hashlib import md5
 from flask_login import UserMixin
+
+
+
+user_message = Table('user_message', Database.metadata,
+                          Column('user_id', String(60),
+                                 ForeignKey('users.id', onupdate='CASCADE',
+                                            ondelete='CASCADE'),
+                                 primary_key=True),
+                          Column('conversation_id', String(60),
+                                 ForeignKey('conversations.id', onupdate='CASCADE',
+                                            ondelete='CASCADE'),
+                                 primary_key=True))
 
 
 class User(Base, Database, UserMixin):
@@ -20,8 +32,10 @@ class User(Base, Database, UserMixin):
                                 cascade="all, delete")
     buyer = relationship("Buyer", backref="users",
                                 cascade="all, delete")
-    conversations = relationship("Conversation", backref="users",
-                                 cascade="all, delete")
+
+    conversations = relationship("Conversation", order_by="Conversation.created_at",
+                                 secondary="user_message",
+                                viewonly=False)
 
     def __init__(self, *args, **kwargs):
         """initializes User"""

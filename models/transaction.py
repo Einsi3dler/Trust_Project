@@ -5,7 +5,7 @@ from sqlalchemy import Column, String, ForeignKey, Integer
 
 
 class Transaction(Base, Database):
-    __tablename__ = 'Transactions'
+    __tablename__ = 'transactions'
     name = Column(String(128), nullable=False)
     buyer_id = Column(String(60), ForeignKey('buyers.id'), nullable=False)
     seller_id = Column(String(60), ForeignKey('sellers.id'), nullable=False)

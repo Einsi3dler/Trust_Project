@@ -1,4 +1,4 @@
-import { Form, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import PageHeader from "../header/header";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,10 +10,10 @@ import './login.css';
 export default function LoginPage () {
   const api = "http://localhost:5000/auth/login";
   const [errorMessages, setErrorMessages] = useState();
-  const [logUserData, setLogUserData] = useState();
+  const [logUserData, setLogUserData] = useState(false);
   const navigate = useNavigate()
 
-  const handleSubmit = () => {
+  function handleSubmit () {
 	// Stop the default submit and page load
 
 	const loginHtmlForm = document.getElementById("login-form");
@@ -22,31 +22,29 @@ export default function LoginPage () {
 	// Handle validations
 	axios.post(api, loginFormData)
 		.then(response => {
-		console.log(response.data);
-		const data = response.data
+		const data = response.data;
+		setErrorMessages(false);
 		setLogUserData(data);
-		console.log(logUserData)
-		navigate("/chat", {state: {logUserData}})
-
 		})
 		.catch(error => {
 			if (error.response) {
-				console.log(error.response);
 				setErrorMessages(error.response.data.message);
 			}
 		})
 	}
 
-	const handleRedirect = (event) => {
+	function handleRedirect (event) {
 		event.preventDefault()
 		handleSubmit();
 		if (errorMessages) {
-			console.log(errorMessages)
 			const formDiv = document.getElementById("error_msg");
 			formDiv.innerHTML = `${errorMessages}`;
 			formDiv.style.display = "grid";
+			return false
 		}
-
+		else if (logUserData) {
+			navigate("/chat", {state: {logUserData}})
+		}
 	}
 
 	return (
@@ -56,7 +54,7 @@ export default function LoginPage () {
 		<div className="auth-wrapper">
 		<p id="error_msg" className="text-center"></p>
           <div className="auth-inner bg-primary">
-			<Form id="login-form" method="POST">
+			<form onSubmit={ handleRedirect } id="login-form" method="POST">
         <h3>Sign In</h3>
 
         <div className="mb-3">
@@ -97,14 +95,14 @@ export default function LoginPage () {
         </div>
 
         <div className="d-grid">
-          <Button type="submit" onClick={handleRedirect} className="btn btn-dark">
+          <Button type="submit" className="btn btn-dark">
             Submit
           </Button>
         </div>
         <p className="forgot-password text-right" >
           Forgot <a href="/signup">password?</a>
         </p>
-		</Form>
+		</form>
 		</div>
 		</div>
 		</div>

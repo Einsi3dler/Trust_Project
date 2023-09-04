@@ -1,6 +1,6 @@
 
 .sidebar {
-	width: 30%;
+	width: 25%;
 	height: 100vh;
 	border-right: 1px solid #6ea8fe;
 	padding: 10px;
@@ -8,9 +8,12 @@
 }
 .chattedUser {
 	height: 40px;
-	border-radius: 20px;
-	text-align: center;
-	border: 1px solid #6ea8fe;
+	border-bottom: 3px solid silver;
+}
+
+.views {
+	background-color:  #6ea8fe;
+
 }
 .message-input-container {
 	position: absolute;

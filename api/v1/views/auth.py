@@ -1,11 +1,9 @@
-from flask_login import LoginManager
-from api.v1.views import auth_views
+from api.v1.views import auth_views, make_error
 from models.user import User
 from models import storage
 from flask import request, session, abort, jsonify, redirect
 from flask_login import login_user
 from hashlib import md5
-from api.v1.app import make_error
 
 
 @auth_views.route('/login', methods=['POST'])
@@ -51,7 +49,7 @@ def signup():
                 error = "Please fill all required details"
                 return error
 
-        if storage.get(User, data={'email': user_data['email']}).values():
+        if storage.get(User, data={'email': user_data['email']}):
             error = "Please try again, email already taken"
             return error
 
