@@ -1,0 +1,9 @@
+flask
+flask_cors
+flask_session
+flask_login
+flask_socketio
+dotenv
+os
+SQLAlchemy
+mysqlclient
