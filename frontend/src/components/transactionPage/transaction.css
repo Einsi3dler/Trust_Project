@@ -1,0 +1,10 @@
+.transaction-div {
+	width: 70vw;
+	background-color:  hsl(210, 36%, 96%) !important;
+	padding: 40px 35px 45px 35px;
+
+}
+
+.desc {
+	height: fit-content;
+}
