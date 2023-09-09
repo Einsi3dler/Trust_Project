@@ -1,0 +1,7 @@
+-- create MySQL user and database for the project
+
+CREATE DATABASE IF NOT EXISTS trust_db;
+CREATE USER IF NOT EXISTS 'trust_dev'@'localhost' IDENTIFIED BY 'trust_dev_pwd';
+GRANT ALL PRIVILEGES ON `trust_dev_db`.* TO 'trust_dev'@'localhost';
+GRANT SELECT ON `performance_schema`.* TO 'trust_dev'@'localhost';
+FLUSH PRIVILEGES;
