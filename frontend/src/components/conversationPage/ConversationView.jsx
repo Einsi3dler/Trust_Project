@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { socket } from "../../socket";
 import { useState, useEffect } from "react";
 import PersonLogo from "./person-circle.svg";
@@ -31,7 +32,7 @@ export default function ConversationView({
 
   useEffect(() => {
     socket.on("receive_msg", (data) => {
-      setIncomingMessage((prevState) => data);
+      setIncomingMessage(data);
     });
     if (incomingMessage) {
       setAllMessage((prevState) => [incomingMessage, ...prevState]);
@@ -110,11 +111,11 @@ export default function ConversationView({
               size={30}
               className="absolute ms-3 text-primary top-5 cursor-pointer"
               onClick={() => {
-                setSendMessage((prevState) => ({
+                setSendMessage({
                   message: value,
                   sender_id: userId,
                   receiver_id: receiverId,
-                }));
+                });
               }}
             />
           </label>
