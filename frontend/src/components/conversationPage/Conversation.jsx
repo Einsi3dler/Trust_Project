@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Container } from "react-bootstrap";
 import './conversation.css';
 import axios from "axios";
@@ -32,7 +33,7 @@ export default function ConversationPage ({ user }) {
 },[userId])
   useMemo(() => {
 	setSpokenTo([]);
-	const conversationApi = `http://localhost:5000/chat/${userId}/conversations`;
+	const conversationApi = `https://web-01.olagoldhackxx.tech/chat/${userId}/conversations`;
 	axios.get(conversationApi)
 	.then(response => {
 	const conversation = response.data;
@@ -45,7 +46,7 @@ export default function ConversationPage ({ user }) {
 	conversationList.push({message, spokeToUserFirstName, spokeToUserLastName, receiverId, });
 	return true
 		})
-	setSpokenTo(prevState => conversationList)
+	setSpokenTo(conversationList)
 	})
 	.catch(error => {
 		console.log(error.response)
