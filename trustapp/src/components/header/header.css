@@ -1,12 +1,17 @@
 body {
 	margin: 0px;
 }
-.logo span {
-	left: 40px;
-	font-size: 2em;
+.logo {
+	background-image: url(../../assets/images/image9.jpg);
+	background-size: contain;
+    width: 90px;
+	height: 90px;
+
+	background-repeat: no-repeat;
 }
 .nav-menu a{
 	color: aliceblue;
+	margin-top: -20px;
 
 }
 .header {

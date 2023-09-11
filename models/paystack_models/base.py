@@ -1,7 +1,10 @@
 import os
 import requests
 import json
-from errors import *
+from models.paystack_models.errors import *
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class Base:

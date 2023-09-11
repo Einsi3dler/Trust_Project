@@ -20,7 +20,7 @@ section div {
 
 }
 .bg-image {
-	background-image: url(./images/image5.jpeg);
+	background-image: url(../../assets/images/image5.jpeg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	mix-blend-mode:hard-light;

@@ -7,9 +7,10 @@ from sqlalchemy import Column, String, ForeignKey, Integer
 class Transaction(Base, Database):
     __tablename__ = 'transactions'
     name = Column(String(128), nullable=False)
-    buyer_id = Column(String(60), ForeignKey('buyers.id'), nullable=False)
-    seller_id = Column(String(60), ForeignKey('sellers.id'), nullable=False)
+    buyer_id = Column(String(60), ForeignKey('buyers.user_id'), nullable=False)
+    seller_id = Column(String(60), ForeignKey('sellers.user_id'), nullable=False)
     agreed_price = Column(Integer, nullable=False, default=0)
+    status = Column(Integer, nullable=False, default=0)
     item = Column(String(128), nullable=False)
     description = Column(String(1024), nullable=True)
 

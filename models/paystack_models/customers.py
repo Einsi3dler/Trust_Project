@@ -1,4 +1,4 @@
-from base import Base
+from models.paystack_models.base import Base
 
 
 class Customer(Base):

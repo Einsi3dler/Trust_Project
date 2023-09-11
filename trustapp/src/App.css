@@ -14,5 +14,6 @@
 body {
 	color: aliceblue;
 	background-color: var(--dark-bg);
-	font-family: 'Sansita', 'Handlee', sans-serif;;
+	font-family: 'Sansita', 'Handlee', sans-serif;
+	overflow-y: auto;
 }

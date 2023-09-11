@@ -3,8 +3,12 @@
 
 from models import storage
 from models.transaction import Transaction
+from models.buyer import Buyer
+from models.seller import Seller
+from models.paystack_models.transaction import Paystack_Transaction
 from models.user import User
 from api.v1.views import app_views
+from models.paystack_models.customers import Customer
 from flask import abort, jsonify, make_response, request
 
 
@@ -21,9 +25,10 @@ def get_transactions():
 
 @app_views.route("users/<user_id>/transactions", methods=['GET'])
 def get_user_transactions(user_id):
-	user = list(storage.get(User, user_id).values())[0]
+	user = list(storage.get(User, user_id).values())
 	if not user:
 		abort(404)
+	user = user[0]
 	transaction_list = []
 	for transaction in user:
 		transaction_list.append(transaction.to_dict())
@@ -31,28 +36,62 @@ def get_user_transactions(user_id):
 
 @app_views.route("/<user_id>/transactions", methods=['POST'])
 def post_user_transactions(user_id):
-    user = storage.get(User, user_id).values()
+    user = list(storage.get(User, user_id).values())
     if not user:
         abort(404)
+    user = user[0]
     form = request.form
     transaction_data = {}
     transaction_data['name'] = form.get('title')
     transaction_data['agreed_price'] = form.get('price')
     transaction_data['description'] = form.get('description')
     transaction_data['item'] = form.get('item')
+    data = request.get_json()
+    transaction_data['buyer_id'] = data.get('buyer_id')
+    transaction_data['seller_id'] = data.get('seller_id')
     compulsory_data = ['buyer_id', 'seller_id', 'name', 'agreed_price']
     for data in compulsory_data:
         if data not in transaction_data.keys():
             abort(404, description="Missing {}".format(data))
+    seller_id = transaction_data['seller_id']
+    seller = list(storage.get(Seller, data = {"user_id": seller_id}).values())[0]
+    if seller is None:
+        new_seller = Seller(user_id=seller_id)
+    buyer_id = transaction_data['buyer_id']
+    buyer = list(storage.get(Buyer, data = {"user_id": buyer_id}).values())[0]
+    if buyer is None:
+        new_buyer = Buyer(user_id=buyer_id)
     new_transaction = Transaction(**transaction_data)
     new_transaction.save
     return make_response(jsonify(new_transaction), 201)
 
 @app_views.route("/<user_id>/transactions/<transaction_id>", methods=['DELETE'])
 def delete_transactions(user_id, transaction_id):
-    user = storage.get(User, user_id).values()
+    user = list(storage.get(User, user_id).values())
     if not user:
         abort(404)
     transaction = storage.get(Transaction, transaction_id)
     storage.delete(transaction)
     storage.save
+
+@app_views.route("/<user_id>/<transaction_id>", methods=['POST'])
+def complete_transactions(user_id, transaction_id):
+    user = list(storage.get(User, user_id).values())
+    if not user:
+        abort(404)
+    user = user[0]
+    transaction = list(storage.get(Transaction, transaction_id).values())
+    transaction = transaction[0]
+    pay = {}
+    if not transaction:
+        abort(404)
+    if transaction.status == 1:
+        customer = Customer()
+        paystack =  Paystack_Transaction()
+        buyer = list(storage.get(Buyer, transaction.buyer_id).values())[0]
+        seller = list(storage.get(Seller, transaction.seller_id).values())[0]
+        print("here")
+        print(buyer.email)
+        pay = paystack.initialize(email=buyer.email, seller_email=seller.email, amount=transaction.agreed_price)
+        return jsonify(pay)
+    return jsonify(pay)

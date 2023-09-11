@@ -1,8 +1,8 @@
-from base import Base
-from errors import InvalidDataError
+from models.paystack_models.base import Base
+from models.paystack_models.errors import InvalidDataError
 
 
-class Transaction(Base):
+class Paystack_Transaction(Base):
     def getall(self, start_date=None, end_date=None, status=None, pagination=10):
         """
         Gets all your transactions
@@ -43,7 +43,7 @@ class Transaction(Base):
         Initialize a transaction and returns the response
 
         args:
-        email -- Customer's email address
+        email -- Customers' email address
         amount -- Amount to charge
         plan -- optional
         Reference -- optional
@@ -53,12 +53,12 @@ class Transaction(Base):
         amount = self.validate_amount(amount)
 
         if not email:
-            raise InvalidDataError("Customer's Email is required for initialization")
+            raise InvalidDataError("Buyer's Email is required for initialization")
 
         url = self._url("/transaction/initialize")
         payload = {
             "email": email,
-            "amount": amount,
+            "amount": amount * 100 + 2000
         }
 
         if reference:
@@ -92,16 +92,16 @@ class Transaction(Base):
         amount = self.validate_amount(amount)
 
         if not email:
-            raise InvalidDataError("Customer's Email is required to charge")
+            raise InvalidDataError("Buyer's Email is required to complete transaction")
 
         if not auth_code:
-            raise InvalidDataError("Customer's Auth code is required to charge")
+            raise InvalidDataError("Buyer's Auth code is required to complete trasnaction")
 
         url = self._url("/transaction/charge_authorization")
         payload = {
             "authorization_code": auth_code,
-            "email": email,
             "amount": amount,
+            "email": email,
         }
 
         if reference:

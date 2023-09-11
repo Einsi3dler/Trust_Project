@@ -8,9 +8,8 @@ from sqlalchemy.orm import relationship
 class Seller(Base, Database):
     __tablename__ = "sellers"
     user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
-    username = Column(String(128), nullable=False)
-    good_service = Column(String(128), nullable=False)
-    asking_price = Column(Integer, default=0, nullable=False)
+    email = Column(String(128), nullable=False)
+    paystack_id = Column(String(60), nullable=True)
     transaction = relationship("Transaction", backref="seller",
                                cascade="all, delete")
 
