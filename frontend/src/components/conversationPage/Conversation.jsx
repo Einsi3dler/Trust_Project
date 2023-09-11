@@ -29,7 +29,7 @@ export default function ConversationPage({ user }) {
   }, [userId]);
   useMemo(() => {
     setSpokenTo([]);
-    const conversationApi = `https://web-01.olagoldhackxx.tech/chat/${userId}/conversations`;
+    const conversationApi = `http://web-01.olagoldhackxx.tech/chat/${userId}/conversations`;
     axios
       .get(conversationApi)
       .then((response) => {

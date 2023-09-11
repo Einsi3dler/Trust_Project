@@ -56,4 +56,4 @@ def signup():
         new_user = User(**user_data)
         new_user.save()
         session['user'] = new_user.to_dict()
-        return redirect("http://localhost:3000/login")
+        return redirect("http://web-01.olagoldhackxx.tech/login")

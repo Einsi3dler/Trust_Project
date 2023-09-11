@@ -18,7 +18,7 @@ export default function ConversationView({
   useEffect(() => {
     setAllMessage([]);
     clearText();
-    const messagesApi = `https://web-01.olagoldhackxx.tech/chat/${userId}/${receiverId}/messages`;
+    const messagesApi = `http://web-01.olagoldhackxx.tech/chat/${userId}/${receiverId}/messages`;
     axios
       .get(messagesApi)
       .then((response) => {
