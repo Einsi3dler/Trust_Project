@@ -29,7 +29,7 @@ def login():
         user = list(storage.get(User, data=user_data).values())
         session["user"] = user
         login_user(user[0], remember=remember)
-        return jsonify(user[0].to_dict())
+        return redirect("http://web-01.olagoldhackxx.tech/dashboard")
 
 
 
@@ -56,4 +56,4 @@ def signup():
         new_user = User(**user_data)
         new_user.save()
         session['user'] = new_user.to_dict()
-        return redirect("http://web-01.olagoldhackxx.tech/login")
+        return redirect("http://web-01.olagoldhackxx.tech/dashboard")
