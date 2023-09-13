@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 export default function NewConversation() {
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   console.log(user);
-  const api = `http://localhost:5000/api/v1/${user.id}/start_transaction`;
+  const api = `http://web-01.olagoldhackxx.tech//api/v1/${user.id}/start_transaction`;
   const [errorMessages, setErrorMessages] = useState(false);
   const [selectedOption, setSelectedOption] = useState();
   const [role, setRole] = useState("selling");
@@ -45,7 +45,7 @@ export default function NewConversation() {
   };
 
   function getUsers() {
-    const users_api = "http://localhost:5000/api/v1/users";
+    const users_api = "http://web-01.olagoldhackxx.tech//api/v1/users";
     axios
       .get(users_api)
       .then((response) => {

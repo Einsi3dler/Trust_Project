@@ -1,7 +1,6 @@
 import { Button } from "react-bootstrap";
 import PageHeader from "../header/header";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './login.css';
 
@@ -10,8 +9,6 @@ import './login.css';
 export default function LoginPage () {
   const api = "http://localhost:5000/auth/login";
   const [errorMessages, setErrorMessages] = useState();
-  const [logUserData, setLogUserData] = useState(false);
-  const navigate = useNavigate()
 
   function handleSubmit () {
 
@@ -23,7 +20,6 @@ export default function LoginPage () {
 		.then(response => {
 		const data = response.data;
 		setErrorMessages(false);
-		setLogUserData(data);
 		localStorage.setItem('loggedUser', JSON.stringify(data));
 		})
 		.catch(error => {
@@ -42,11 +38,6 @@ export default function LoginPage () {
 			formDiv.style.display = "grid";
 			return false
 		}
-		if (logUserData) {
-
-			navigate("/chat", {state: {logUserData}})
-		}
-
 
 	}
 
