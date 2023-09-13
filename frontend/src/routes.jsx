@@ -4,7 +4,8 @@ import LoginPage from "./components/loginPage/loginPage";
 import SignupPage from "./components/signupPage/signupPage";
 import ResponsiveChatView from "./components/conversationPage/ResponsiveChat";
 import ChatPage from "./chatPage";
-import NewConversation from "./components/transactionPage/NewTransactionForm";
+import NewTransaction from "./components/transactionPage/NewTransactionForm";
+import StartedTransaction from "./components/transactionPage/startedTransaction";
 
 const PageRoute = () => {
   return (
@@ -15,7 +16,8 @@ const PageRoute = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/responsive" element={<ResponsiveChatView />} />
-        <Route path="/transaction" element={<NewConversation />} />
+        <Route path="/transaction" element={<NewTransaction />} />
+		<Route path="/started-transaction" element={<StartedTransaction />} />
       </Routes>
     </>
   );

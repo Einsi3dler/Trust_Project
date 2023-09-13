@@ -20,3 +20,15 @@ datalist {
 	position: absolute;
 	margin-left: 0px;
 }
+
+.started {
+	display: grid;
+	position: relative;
+	left: 32%;
+	margin-top: 13%;
+	width: 500px;
+	height: 300px;
+	border-radius: 4px;
+	color: var(--dark-bg);
+	background-color: hsl(210, 36%, 96%) !important;
+}

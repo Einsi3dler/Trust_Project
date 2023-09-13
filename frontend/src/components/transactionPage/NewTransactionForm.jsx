@@ -5,7 +5,7 @@ import "./transaction.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function NewConversation() {
+export default function NewTransaction() {
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   const api = `http://web-01.olagoldhackxx.tech//api/v1/${user.id}/start_transaction`;
   const [errorMessages, setErrorMessages] = useState(false);
