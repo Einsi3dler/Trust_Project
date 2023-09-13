@@ -15,7 +15,7 @@ export default function PageHeader() {
           className="bg-dark"
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="navbar-label">Trust</Offcanvas.Title>
+            <Offcanvas.Title id="navbar-label"> <div className="responsive-logo"></div></Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav

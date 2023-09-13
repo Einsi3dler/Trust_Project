@@ -1,6 +1,14 @@
 body {
 	margin: 0px;
 }
+.responsive-logo {
+	background-image: url(../../assets/images/image9.jpg);
+	background-size: contain;
+	width: 70px;
+	height: 70px;
+	background-repeat: no-repeat;
+	margin-left: -15px;
+}
 .logo {
 	background-image: url(../../assets/images/image9.jpg);
 	background-size: contain;
