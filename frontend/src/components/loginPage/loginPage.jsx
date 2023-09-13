@@ -8,13 +8,12 @@ import './login.css';
 
 
 export default function LoginPage () {
-  const api = "http://web-01.olagoldhackxx.tech/auth/login";
+  const api = "http://localhost:5000/auth/login";
   const [errorMessages, setErrorMessages] = useState();
   const [logUserData, setLogUserData] = useState(false);
   const navigate = useNavigate()
 
   function handleSubmit () {
-	// Stop the default submit and page load
 
 	const loginHtmlForm = document.getElementById("login-form");
 	const loginFormData = new FormData(loginHtmlForm);
@@ -25,6 +24,7 @@ export default function LoginPage () {
 		const data = response.data;
 		setErrorMessages(false);
 		setLogUserData(data);
+		localStorage.setItem('loggedUser', JSON.stringify(data));
 		})
 		.catch(error => {
 			if (error.response) {

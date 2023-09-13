@@ -46,7 +46,7 @@ class Base:
         status = parsed_response.get('status', None)
         message = parsed_response.get('message', None)
         data = parsed_response.get('data', None)
-        return response_obj.status_code, status, message, data
+        return data
 
     def _handle_request(self, method, url, data=None):
 

@@ -33,7 +33,7 @@ export default function HomePage() {
               got your back
             </article>
             <div className="d-grid">
-              <select className="role">
+              <select className="role form-select">
                 <option value="buying">I'm selling</option>
                 <option value="selling">I'm buying</option>
                 <option value="both">I buy and sell</option>

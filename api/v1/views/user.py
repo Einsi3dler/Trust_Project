@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from models.user import User
 from models import storage
-from api.v1.views import app_views
+from api.v1.views import app_views, make_error
 from flask import abort, jsonify, make_response, request
 
 
@@ -10,7 +10,9 @@ def get_users():
     """
     Retrieves the list of all user
     """
-    all_users = storage.all(User).values()
+    all_users = list(storage.all(User).values())
+    if all_users is None:
+        make_error(404, "No users found")
     list_users = []
     for user in all_users:
         list_users.append(user.to_dict())

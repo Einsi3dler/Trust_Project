@@ -64,6 +64,7 @@ body {
 
 @media screen and (max-width: 991px) {
 	.nav-menu a {
+		margin-top: 8px;
 		border-bottom: 1px solid rgba(255,255,255,.55);
 		transition: none;
 	}

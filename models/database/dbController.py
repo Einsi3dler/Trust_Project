@@ -74,7 +74,7 @@ class DBStorage:
         None if not found
         """
         if cls not in classes.values():
-            return None
+            return {}
 
         result_dict = {}
         if id is not None:
@@ -83,15 +83,15 @@ class DBStorage:
                 key = objs.__class__.__name__ + '.' + objs.id
                 result_dict[key] = objs
                 return result_dict
-            return None
+            return {}
         elif data:
             objs = self.__session.query(cls).filter_by(**data).first()
             if objs is not None:
                 key = objs.__class__.__name__ + '.' + objs.id
                 result_dict[key] = objs
                 return result_dict
-            return None
-        return None
+            return {}
+        return {}
 
 
 

@@ -8,3 +8,15 @@
 .desc {
 	height: fit-content;
 }
+.user-role {
+	width: 100%;
+}
+.partner{
+	position: relative;
+	margin-top: 20px;
+}
+
+datalist {
+	position: absolute;
+	margin-left: 0px;
+}
