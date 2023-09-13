@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 export default function NewConversation() {
   const user = JSON.parse(localStorage.getItem("loggedUser"));
-  console.log(user);
   const api = `http://web-01.olagoldhackxx.tech//api/v1/${user.id}/start_transaction`;
   const [errorMessages, setErrorMessages] = useState(false);
   const [selectedOption, setSelectedOption] = useState();

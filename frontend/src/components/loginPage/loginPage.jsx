@@ -7,7 +7,7 @@ import './login.css';
 
 
 export default function LoginPage () {
-  const api = "http://localhost:5000/auth/login";
+  const api = "http://web-01.olagoldhackxx.tech/auth/login";
   const [errorMessages, setErrorMessages] = useState();
 
   function handleSubmit () {

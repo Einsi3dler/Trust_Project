@@ -1,9 +1,7 @@
 import ConversationPage from './components/conversationPage/Conversation';
-import { useLocation } from 'react-router-dom';
 
 export default function ChatPage () {
-	const { state } = useLocation()
-	const user = state.logUserData
+	const user = JSON.parse(localStorage.getItem("loggedUser"));
 	return (
 		<>
 		<ConversationPage  user={user}/>
