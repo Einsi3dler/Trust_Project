@@ -13,7 +13,7 @@
 }
 body {
 	color: aliceblue;
-	background-color: var(--dark-bg);
+	background-color: black;
 	font-family: 'Sansita', 'Handlee', sans-serif;
 	overflow-y: auto;
 }

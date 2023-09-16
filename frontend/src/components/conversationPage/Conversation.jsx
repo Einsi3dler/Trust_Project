@@ -29,7 +29,7 @@ export default function ConversationPage({ user }) {
   }, [userId]);
   useMemo(() => {
     setSpokenTo([]);
-    const conversationApi = `http://web-01.olagoldhackxx.tech/chat/${userId}/conversations`;
+    const conversationApi = `http://localhost:5000/chat/${userId}/conversations`;
     axios
       .get(conversationApi)
       .then((response) => {
@@ -113,14 +113,14 @@ export default function ConversationPage({ user }) {
                 id="basic-navbar-nav"
                 aria-labelledby="navbar-label"
                 placement="start"
-                className="bg-dark"
+				className="popover"
               >
                 <Offcanvas.Header closeButton>
-                  <Offcanvas.Title id="navbar-label">Trust</Offcanvas.Title>
+                  <Offcanvas.Title id="navbar-label"> <div className="logo"></div></Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                   <div
-                    className="chat-menu justify-content-end flex-grow-1 pe-3"
+                    className="chat-menu flex-grow-1 pe-3"
                     id="nav-menu"
                   >
                     <ul>

@@ -10,7 +10,7 @@ export default function SignupPage() {
           <div className="auth-inner bg-primary" id="signup">
             <Form
               className="form"
-              action="http://web-01.olagoldhackxx.tech/auth/signup"
+              action="http://localhost:5000/auth/signup"
               method="POST"
             >
               <h3>Sign Up</h3>

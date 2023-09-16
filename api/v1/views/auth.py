@@ -19,17 +19,19 @@ def login():
         for keys, data in user_data.items():
             if not data:
                 error = "Please fill in your {}".format(keys)
+                print("here")
                 return make_error(404, error)
             user = storage.get(User, data={keys: data}).values()
             if not user:
                 error = "Please try again, wrong {}".format(keys)
+                print("here 2")
                 return make_error(404, error)
 
 
-        user = list(storage.get(User, data=user_data).values())
+        user = list(storage.get(User, data=user_data).values())[0]
         session["user"] = user
-        login_user(user[0], remember=remember)
-        return redirect("http://web-01.olagoldhackxx.tech/dashboard")
+        login_user(user, remember=remember)
+        return jsonify(user.to_dict())
 
 
 
@@ -56,4 +58,4 @@ def signup():
         new_user = User(**user_data)
         new_user.save()
         session['user'] = new_user.to_dict()
-        return redirect("http://web-01.olagoldhackxx.tech/dashboard")
+        return redirect("http://localhost:5173/chat")

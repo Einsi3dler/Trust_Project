@@ -5,13 +5,15 @@ import "./transaction.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+
 export default function NewTransaction() {
   const user = JSON.parse(localStorage.getItem("loggedUser"));
-  const api = `http://web-01.olagoldhackxx.tech//api/v1/${user.id}/start_transaction`;
+  const api = `http://localhost:5000//api/v1/${user.id}/start_transaction`;
   const [errorMessages, setErrorMessages] = useState(false);
   const [selectedOption, setSelectedOption] = useState();
   const [role, setRole] = useState("selling");
   const [options, setOptions] = useState();
+
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -24,6 +26,7 @@ export default function NewTransaction() {
       transactionFormData.append("buyer_id", user.id);
       transactionFormData.append("seller_id", selectedOption);
     }
+	localStorage.setItem('role', JSON.stringify(role));
     // Handle validations
     axios
       .post(api, transactionFormData)
@@ -44,7 +47,7 @@ export default function NewTransaction() {
   };
 
   function getUsers() {
-    const users_api = "http://web-01.olagoldhackxx.tech//api/v1/users";
+    const users_api = "http://localhost:5000//api/v1/users";
     axios
       .get(users_api)
       .then((response) => {

@@ -6,7 +6,7 @@
 	width: 25vw;
 	min-height: 100vh;
 	padding: 10px;
-	background-color: var(--dark-bg);
+	background-color: black;
 	overflow-x: hidden;
 
 }
@@ -145,6 +145,9 @@ input[type=text]:focus {
 	text-align: center;
 
 }
+.popover {
+	background-color: black !important;
+}
 
 @media  screen and (max-width: 767px) {
 	.sidebar {
@@ -175,4 +178,7 @@ input[type=text]:focus {
 		width: 88vw;
 	}
 
+}
+.chat-menu {
+	margin-left: -25px;
 }
