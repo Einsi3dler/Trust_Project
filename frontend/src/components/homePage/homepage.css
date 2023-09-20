@@ -29,6 +29,7 @@ section div {
 
 .get-started {
 	border-radius: 7px;
+	color: aliceblue !important;
 }
 @media screen and (max-width: 700px) {
 	section div {

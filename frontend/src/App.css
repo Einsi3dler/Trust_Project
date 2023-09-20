@@ -13,7 +13,10 @@
 }
 body {
 	color: aliceblue;
-	background-color: black;
+	background-color: black !important;
 	font-family: 'Sansita', 'Handlee', sans-serif;
 	overflow-y: auto;
+}
+.select-text {
+	margin-top: 40px;
 }

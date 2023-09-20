@@ -107,7 +107,7 @@ input[type=text]:focus {
 	list-style-type: none;
 	margin-bottom: 10px;
 	padding-bottom: 5px;
-	border-bottom: 1px solid rgba(255,255,255,.55);
+	border-bottom: 1px solid rgba(128, 109, 109, 0.55);
 
 }
 .chat-logout {
@@ -154,7 +154,7 @@ input[type=text]:focus {
 		margin: 0px;
 	}
 	.msg-container {
-		background-color: var(--dark-bg) !important;
+		background-color: black !important;
 	}
 	.message-input-container {
 		position: relative;
