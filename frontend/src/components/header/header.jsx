@@ -3,7 +3,7 @@ import "./header.css";
 
 export default function PageHeader() {
   return (
-    <Navbar expand="lg" fixed="top" collapseOnSelect className="header">
+    <Navbar expand="lg" collapseOnSelect className="header">
       <Container fluid>
         <Navbar.Brand> <div className="logo"></div>
         </Navbar.Brand>

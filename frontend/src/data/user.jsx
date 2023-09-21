@@ -37,25 +37,6 @@ export default function Users() {
 	company: faker.company.name()
   }));
 
-  const dummyUsers = [...Array(30)].map((_, index) => ({
-    id:  faker.datatype.uuid(),
-    avatarUrl: `/assets/i mages/avatars/avatar_${index + 1}.jpg`,
-    name: faker.name.fullName(),
-    status:  sample(["Completed", "Cancelled",  "Pending"]),
-    role:  sample(["Buyer", "Seller", "Both", "Broker"]),
-	isVerified: sample(["Yes", "No"]),
-	job: sample(['Leader',
-    'Hr Manager',
-    'UI Designer',
-    'UX Designer',
-    'UI/UX Designer',
-    'Project Manager',
-    'Backend Developer',
-    'Full Stack Designer',
-    'Front End Developer',
-    'Full Stack Developer']),
-	company: faker.company.name()
-  }));
 
    console.log(users);
   return allUsers

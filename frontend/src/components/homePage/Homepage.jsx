@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <div>
       <PageHeader />
-      <main>
+      <main className="homepage">
         <section className="home">
           <h2>
             Welcome to <span className="text-primary">Trust</span>
@@ -43,6 +43,12 @@ export default function HomePage() {
             <Button type="submit" className="btn btn-primary button">
               Get Started
             </Button>
+          </div>
+        </section>
+        <section className="about-section d-grid d-lg-flex d-md-flex">
+          <div className="about-image"></div>
+          <div>
+
           </div>
         </section>
       </main>

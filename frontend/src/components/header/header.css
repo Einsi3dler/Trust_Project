@@ -23,10 +23,22 @@ body {
 
 }
 .header {
+	margin-top: 8px;
 	display: flex;
+	margin-bottom: -80px;
+}
+#nav-menu a {
+	margin-left: 20px;
 
 }
+#nav-signin {
+	border: 1px solid var(--bs-primary);
+	border-radius: 4px;
+	width: 6em;
+	text-align: center;
 
+
+}
 .nav-menu a:hover {
 	color: var(--bs-primary);
 	border-bottom: 3px solid aliceblue;
@@ -43,9 +55,7 @@ body {
 	.nav-menu #nav-signup:hover {
 		color: black;
 	}
-	.header {
-		margin: 0px 80px;
-	}
+
 
 }
 
