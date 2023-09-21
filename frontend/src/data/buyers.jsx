@@ -7,7 +7,7 @@ export default function Buyers() {
   const [userBuyers, setBuyers] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/v1/buyers")
+      .get("http://web-01.olagoldhackxx.tech/api/v1/buyers")
       .then((response) => {
         setBuyers(response.data);
       })

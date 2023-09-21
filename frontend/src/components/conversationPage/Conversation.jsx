@@ -30,7 +30,7 @@ export default function ConversationPage({ user, receiver }) {
   }, [userId, receiver]);
   useMemo(() => {
     setSpokenTo([]);
-    const conversationApi = `http://localhost:5000/chat/${userId}/conversations`;
+    const conversationApi = `http://web-01.olagoldhackxx.tech/chat/${userId}/conversations`;
     axios
       .get(conversationApi)
       .then((response) => {
