@@ -270,7 +270,7 @@ export default function TransactionsPage() {
                           <TableCell align="left">{role}</TableCell>
                           <TableCell align="left">{price}</TableCell>
                           <TableCell align="left">{buyer}</TableCell>
-                          <TableCell align="left">{seller}</TableCell>
+                          <TableCell align="left" className="text-capitalize">{seller}</TableCell>
 
                           <TableCell align="right">
                             <IconButton
@@ -329,7 +329,7 @@ export default function TransactionsPage() {
             onRowsPerPageChange={handleChangeRowsPerPage}
             sx={
               isDesktop
-                ? { marginTop: -7 * rowsPerPage }
+                ? { marginTop: rowsPerPage }
                 : { marginTop: rowsPerPage }
             }
           />

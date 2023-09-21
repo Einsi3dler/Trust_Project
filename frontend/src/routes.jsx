@@ -8,8 +8,7 @@ import { Navigate, useRoutes } from "react-router-dom";
 // layouts
 import DashboardLayout from "./layouts/dashboard";
 // dashboard views
-import ChatPage from "./chatPage";
-import Redirect from "./pages/ChatPage";
+import ChatPage  from "./pages/ChatPage";
 import UserPage from "./pages/UserPage";
 import Login from "./pages/LoginPage";
 import Page404 from "./pages/Page404";
@@ -29,7 +28,6 @@ export default function PageRouter() {
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: "app", element: <DashboardAppPage /> },
         { path: "user", element: <UserPage /> },
-        { path: "chat", element: <Redirect /> },
 		{ path: "buyers", element: <BuyerPage /> },
 		{ path: "sellers", element: <SellerPage /> },
 		{ path: "transactions", element: < TransactionsPage/>}

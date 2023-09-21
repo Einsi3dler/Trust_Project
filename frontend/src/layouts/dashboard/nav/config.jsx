@@ -23,7 +23,7 @@ const navConfig = [
   },
   {
     title: 'chat',
-    path: '/dashboard/chat',
+    path: '/chat',
     icon: icon('icons8-message'),
   },
   {

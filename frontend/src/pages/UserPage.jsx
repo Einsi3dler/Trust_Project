@@ -30,7 +30,7 @@ import Scrollbar from "../components/scrollbar";
 // sections
 import { UserListHead, UserListToolbar } from "../sections/@dashboard/user";
 // mock
-import USERLIST from "../data/user";
+import Users from "../data/user";
 import account from "../data/account";
 
 // ----------------------------------------------------------------------
@@ -95,11 +95,16 @@ export default function UserPage() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [receiveMsg, setReceiveMsg] = useState({});
+
   const isDesktop = useResponsive("up", "lg");
+
+  const USERLIST = Users();
+
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
 	localStorage.setItem("receiver", JSON.stringify(receiveMsg))
+	console.log(receiveMsg)
   };
 
   const handleCloseMenu = () => {
@@ -261,7 +266,7 @@ export default function UserPage() {
                           <TableCell align="left">
                             <Label
                               color={
-                                (status === "banned" && "error") || "success"
+                                (status === "Banned" && "error") || "success"
                               }
                             >
                               {sentenceCase(status)}

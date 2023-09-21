@@ -8,7 +8,7 @@ export default function Transactions() {
   const [userTransactions, setUserTransactions] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://web-01.olagoldhackxx.tech/api/v1/${account.id}/transactions`)
+      .get(`http://localhost:5000/api/v1/${account.id}/transactions`)
       .then((response) => {
         setUserTransactions(response.data);
       })
@@ -18,19 +18,26 @@ export default function Transactions() {
       });
   }, []);
 
-  if (!userTransactions.length) {
-    setUserTransactions([...Array(24)]);
-  }
-
   const transactions = userTransactions.map((el, index) => ({
-    id: faker.datatype.uuid(),
-    avatarUrl: `/assets/images/avatars/avatar_${index + 1}.jpg`,
-    name:  faker.name.fullName(),
-    status: sample(["Completed", "Pending", "Cancelled"]),
-    role: sample(["Buyer", "Seller"]),
+    id: el.id ? el.id : faker.datatype.uuid(),
+    avatarUrl: `/assets/i mages/avatars/avatar_${index + 1}.jpg`,
+    name: el.name ? el.name : faker.name.fullName(),
+    status: el.status === 2 ? "Completed" : "Pending",
+    role: account.id === el.buyer_id ? "Buyer" : "Seller",
+    item: el.item ? el.item : "Dummy data",
+    description: el.description ? el.description : "Dummy data",
+    price: el.agreed_price ? el.agreed_price : faker.datatype.number()
+  }));
+
+  const dummyTransactions = [...Array(30)].map((el, index) => ({
+    id:  faker.datatype.uuid(),
+    avatarUrl: `/assets/i mages/avatars/avatar_${index + 1}.jpg`,
+    name: faker.name.fullName(),
+    status:  sample(["Completed", "Cancelled",  "Pending"]),
+    role:  sample(["Buyer", "Seller"]),
     item: "Dummy data",
-    description: "Dummy data",
-    price:  faker.datatype.number()
+    description:  "Dummy data",
+    price: faker.datatype.number()
   }));
 
   transactions.map(
@@ -42,5 +49,14 @@ export default function Transactions() {
     )
   );
 
-  return transactions;
+  dummyTransactions.map(
+    (el) => (
+      (el["buyer"] =
+        el["role"] === "Buyer" ? account.displayName : faker.name.fullName()),
+      (el["seller"] =
+        el["role"] === "Seller" ? account.displayName : faker.name.fullName())
+    )
+  );
+
+  return transactions ? transactions : dummyTransactions;
 }

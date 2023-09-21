@@ -7,7 +7,7 @@ import './login.css';
 
 
 export default function LoginPage () {
-  const api = "http://web-01.olagoldhackxx.tech/auth/login";
+  const api = "http://localhost:5000/auth/login";
   const [errorMessages, setErrorMessages] = useState();
 
   function handleSubmit () {
@@ -21,7 +21,7 @@ export default function LoginPage () {
 		const data = response.data;
 		setErrorMessages(false);
 		localStorage.setItem('loggedUser', JSON.stringify(data));
-		window.location.replace("http://web-01.olagoldhackxx.tech/dashboard")
+		window.location.replace("http://localhost:5173/dashboard")
 		})
 		.catch(error => {
 			if (error.response) {

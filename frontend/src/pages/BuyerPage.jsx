@@ -31,7 +31,8 @@ import Scrollbar from "../components/scrollbar";
 // sections
 import { UserListHead, UserListToolbar } from "../sections/@dashboard/user";
 // mock
-import USERLIST from "../data/user";
+import Buyers from "../data/buyers";
+
 
 // ----------------------------------------------------------------------
 
@@ -96,7 +97,7 @@ export default function BuyerPage() {
 
   const [receiveMsg, setReceiveMsg] = useState({});
 
-
+  const USERLIST = Buyers();
   const isDesktop = useResponsive("up", "lg");
 
 
@@ -332,7 +333,7 @@ export default function BuyerPage() {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-            sx={isDesktop ? {marginTop: -7 * rowsPerPage}  : {marginTop: rowsPerPage}}
+            sx={isDesktop ? {marginTop: rowsPerPage}  : {marginTop: rowsPerPage}}
           />
         </Card>
       </Container>

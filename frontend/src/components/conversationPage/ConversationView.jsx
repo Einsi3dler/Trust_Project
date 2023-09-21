@@ -18,7 +18,7 @@ export default function ConversationView({
   useEffect(() => {
     setAllMessage([]);
     clearText();
-    const messagesApi = `http://web-01.olagoldhackxx.tech/chat/${userId}/${receiverId}/messages`;
+    const messagesApi = `http://localhost:5000/chat/${userId}/${receiverId}/messages`;
     axios
       .get(messagesApi)
       .then((response) => {
@@ -42,6 +42,7 @@ export default function ConversationView({
     }
   }, [incomingMessage, sendMessage]);
   console.log(incomingMessage);
+  console.log(sendMessage)
 
   function clearText() {
     let input = document.getElementById("text");

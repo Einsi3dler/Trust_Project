@@ -25,11 +25,12 @@ export default function ConversationPage({ user, receiver }) {
     socket.on("connect", () => {
       socket.emit("add_user", userId);
     });
+
     setCurrentChatId(userId);
-  }, [userId]);
+  }, [userId, receiver]);
   useMemo(() => {
     setSpokenTo([]);
-    const conversationApi = `http://web-01.olagoldhackxx.tech/chat/${userId}/conversations`;
+    const conversationApi = `http://localhost:5000/chat/${userId}/conversations`;
     axios
       .get(conversationApi)
       .then((response) => {
@@ -71,9 +72,9 @@ export default function ConversationPage({ user, receiver }) {
   ) {
     event.preventDefault();
     const chat = document.getElementById(receiver_id);
-    if (currentChatId) {
-      const chattedUser = document.getElementById(currentChatId);
-      chattedUser.style.borderBottomColor = "silver";
+    if (currentChatId !== undefined) {
+      let chattedUser = document.getElementById(currentChatId);
+      chattedUser ? chattedUser.style.borderBottomColor = "silver" : chattedUser = "Null";
     }
     chat.style.borderBottomColor = `var(--bs-primary)`;
     setCurrentChatId(receiver_id);
@@ -93,7 +94,6 @@ export default function ConversationPage({ user, receiver }) {
       });
     }
   }
-  console.log(currentReceiver);
 
   return (
     <>

@@ -12,7 +12,7 @@
     --brShadow: -6px 6px 15px;
 }
 body {
-	color: aliceblue;
+	color: aliceblue !important;
 	background-color: black !important;
 	font-family: 'Sansita', 'Handlee', sans-serif;
 	overflow-y: auto;

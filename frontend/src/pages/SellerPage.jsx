@@ -4,6 +4,7 @@ import { sentenceCase } from "change-case";
 import { useState } from "react";
 import useResponsive from "../hooks/useResponsive";
 import account from "../data/account";
+import Sellers from "../data/sellers";
 // @mui
 import {
   Card,
@@ -31,7 +32,6 @@ import Scrollbar from "../components/scrollbar";
 // sections
 import { UserListHead, UserListToolbar } from "../sections/@dashboard/user";
 // mock
-import USERLIST from "../data/user";
 
 // ----------------------------------------------------------------------
 
@@ -95,6 +95,9 @@ export default function SellerPage() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [receiveMsg, setReceiveMsg] = useState({});
+
+  const USERLIST = Sellers();
+
 
 
   const isDesktop = useResponsive("up", "lg");
@@ -329,7 +332,7 @@ export default function SellerPage() {
             onRowsPerPageChange={handleChangeRowsPerPage}
             sx={
               isDesktop
-                ? { marginTop: -7 * rowsPerPage }
+                ? { marginTop:  rowsPerPage }
                 : { marginTop: rowsPerPage }
             }
           />
