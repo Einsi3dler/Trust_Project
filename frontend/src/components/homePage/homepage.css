@@ -5,10 +5,11 @@
 	line-height: .5em;
 }
 .homepage {
-	height: 2000px;
+	height: 1600px;
 }
 .home p {
 	margin-top: -6px;
+	margin: 10px;
 	line-height: 1em;
 }
 .bg-section {
@@ -58,7 +59,8 @@ section div {
 	}
 	.about-image {
 		top: 800px;
-		height: 250px;
+		background-size: cover;
+		height: 240px;
 		width: 80vw;
 	}
 }
@@ -80,13 +82,4 @@ section div {
 
 main {
 	margin-top: 70px;
-}
-
-ul {
-	list-style-type: none
-}
-
-article {
-	font-family: 'Montserrat';
-	font-size: 900;
 }

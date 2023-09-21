@@ -29,16 +29,8 @@ body {
 }
 #nav-menu a {
 	margin-left: 20px;
-
 }
-#nav-signin {
-	border: 1px solid var(--bs-primary);
-	border-radius: 4px;
-	width: 6em;
-	text-align: center;
 
-
-}
 .nav-menu a:hover {
 	color: var(--bs-primary);
 	border-bottom: 3px solid aliceblue;
@@ -55,7 +47,12 @@ body {
 	.nav-menu #nav-signup:hover {
 		color: black;
 	}
-
+	#nav-signin {
+		border: 1px solid var(--bs-primary);
+		border-radius: 4px;
+		width: 6em;
+		text-align: center;
+	}
 
 }
 
@@ -89,6 +86,13 @@ body {
 	.nav-menu a:hover {
 		color: var(--bs-primary);
 	}
+	#nav-signin {
+		margin-left: 18px;
+	}
+	#nav-signup {
+		margin-left: 18px;
+	}
+
 
 }
 
