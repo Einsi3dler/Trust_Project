@@ -13,7 +13,7 @@ app_views.strict_slashes = False
 @app_views.route("/buyers", methods=['GET'])
 def get_buyers():
     """Get all buyers"""
-    all_buyers = storage.all(Transaction).values()
+    all_buyers = storage.all(Buyer).values()
     buyer_list = []
     for buyer in all_buyers:
         buyer_list.append(buyer.to_dict())
