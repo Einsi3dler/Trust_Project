@@ -94,11 +94,12 @@ export default function UserPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const [receiveMsg, setReceiveMsg] = useState({});
   const isDesktop = useResponsive("up", "lg");
-
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
+	localStorage.setItem("receiver", JSON.stringify(receiveMsg))
   };
 
   const handleCloseMenu = () => {
@@ -173,8 +174,8 @@ export default function UserPage() {
           justifyContent="space-between"
           mb={5}
         >
-          <Typography variant="h4" gutterBottom>
-            {account.name}
+          <Typography variant="h4" gutterBottom className="text-capitalize">
+            {account.displayName}
           </Typography>
           <Button
             variant="contained"
@@ -186,11 +187,11 @@ export default function UserPage() {
         </Stack>
 
         <Card>
-            <UserListToolbar
-              numSelected={selected.length}
-              filterName={filterName}
-              onFilterName={handleFilterByName}
-            />
+          <UserListToolbar
+            numSelected={selected.length}
+            filterName={filterName}
+            onFilterName={handleFilterByName}
+          />
 
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
@@ -271,7 +272,8 @@ export default function UserPage() {
                             <IconButton
                               size="large"
                               color="inherit"
-                              onClick={handleOpenMenu}
+                              onClick={(e) => (setReceiveMsg(row), handleOpenMenu(e))}
+
                             >
                               <Iconify icon={"eva:more-vertical-fill"} />
                             </IconButton>
@@ -317,7 +319,11 @@ export default function UserPage() {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-            sx={isDesktop ? {marginTop: -7 * rowsPerPage}  : {marginTop: rowsPerPage}}
+            sx={
+              isDesktop
+                ? { marginTop: -7 * rowsPerPage }
+                : { marginTop: rowsPerPage }
+            }
           />
         </Card>
       </Container>
@@ -341,13 +347,15 @@ export default function UserPage() {
         }}
       >
         <MenuItem>
-          <Iconify icon={"eva:edit-fill"} sx={{ mr: 2 }} />
-          Edit
+            <a  href="/chat" className="d-flex text-decoration-none">
+				<div className="msg"></div>
+            <span className="ps-2" >Message</span>
+			</a>
         </MenuItem>
 
         <MenuItem sx={{ color: "error.main" }}>
           <Iconify icon={"eva:trash-2-outline"} sx={{ mr: 2 }} />
-          Delete
+          Report
         </MenuItem>
       </Popover>
     </>

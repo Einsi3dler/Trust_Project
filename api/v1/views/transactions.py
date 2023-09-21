@@ -23,11 +23,11 @@ def get_transactions():
         transaction_list.append(transaction.to_dict())
     return jsonify(transaction_list)
 
-@app_views.route("users/<user_id>/transactions", methods=['GET'])
+@app_views.route("/<user_id>/transactions", methods=['GET'])
 def get_user_transactions(user_id):
-	user = list(storage.get(User, user_id).values())
+	user = list(storage.get(Transaction, data={"seller_id": user_id, "buyer_id": user_id}).values())
 	if not user:
-		make_error(404, "User not found")
+		return jsonify([])
 	user = user[0]
 	transaction_list = []
 	for transaction in user:
@@ -58,7 +58,7 @@ def post_user_transactions(user_id):
     if not seller:
         user_seller = list(storage.get(User, seller_id).values())
         if not user_seller:
-            make_error(404, "Seller not found")
+            return make_error(200, "Seller not found")
         user_seller = user_seller[0]
         customer = Customer()
         new_customer = customer.create(email=user_seller.email, first_name=user_seller.first_name, last_name=user_seller.last_name)
@@ -71,7 +71,7 @@ def post_user_transactions(user_id):
     if not buyer:
         user_buyer = list(storage.get(User,buyer_id).values())
         if not user_buyer:
-            make_error(404, "Buyer not found")
+            make_error(400, "Buyer not found")
         user_buyer = user_buyer[0]
         customer = Customer()
         new_customer = customer.create(email=user_buyer.email, first_name=user_buyer.first_name, last_name=user_buyer.last_name)

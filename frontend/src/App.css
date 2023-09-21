@@ -20,3 +20,23 @@ body {
 .select-text {
 	margin-top: 40px;
 }
+
+body::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Hiding scrollbar for IE, Edge and Firefox */
+#root {
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.msg {
+	background-image: url(../public/assets/icons8-message-48.png);
+	height: 23px;
+	width: 23px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	border: 0px;
+	color: aliceblue;
+}

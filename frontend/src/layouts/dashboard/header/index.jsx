@@ -50,8 +50,6 @@ export default function Header({ onOpenNav }) {
           onClick={onOpenNav}
           sx={{
             mr: 1,
-            color: 'black',
-			backgroundImage: "url('../../../assets/images/Vector.png')",
             display: { lg: 'none' },
           }}
         >

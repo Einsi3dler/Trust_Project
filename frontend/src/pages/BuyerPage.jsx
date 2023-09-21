@@ -3,6 +3,7 @@ import { filter } from "lodash";
 import { sentenceCase } from "change-case";
 import { useState } from "react";
 import useResponsive from "../hooks/useResponsive";
+import account from "../data/account";
 // @mui
 import {
   Card,
@@ -93,11 +94,15 @@ export default function BuyerPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const [receiveMsg, setReceiveMsg] = useState({});
+
+
   const isDesktop = useResponsive("up", "lg");
 
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
+	localStorage.setItem("receiver", JSON.stringify(receiveMsg))
   };
 
   const handleCloseMenu = () => {
@@ -175,8 +180,8 @@ export default function BuyerPage() {
           justifyContent="space-between"
           mb={5}
         >
-          <Typography variant="h4" gutterBottom>
-            Jaydon Frankie
+          <Typography variant="h4" gutterBottom className="text-capitalize">
+            {account.displayName}
           </Typography>
           <Button
             variant="contained"
@@ -187,7 +192,7 @@ export default function BuyerPage() {
         </Stack>
 
         <Card>
-		<div className="d-flex">
+		<div className="d-lg-flex d-md-grid ms-3">
             <UserListToolbar
               numSelected={selected.length}
               filterName={filterName}
@@ -276,7 +281,7 @@ export default function BuyerPage() {
                             <IconButton
                               size="large"
                               color="inherit"
-                              onClick={handleOpenMenu}
+                              onClick={(e) => (setReceiveMsg(row), handleOpenMenu(e))}
                             >
                               <Iconify icon={"eva:more-vertical-fill"} />
                             </IconButton>
@@ -351,8 +356,10 @@ export default function BuyerPage() {
         }}
       >
         <MenuItem>
-          <Iconify icon={"eva:edit-fill"} sx={{ mr: 2 }} />
-          Edit
+		<a  href="/chat" className="d-flex text-decoration-none">
+				<div className="msg"></div>
+            <span className="ps-2" >Message</span>
+			</a>
         </MenuItem>
 
         <MenuItem sx={{ color: "error.main" }}>

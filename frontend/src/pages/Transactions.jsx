@@ -3,6 +3,7 @@ import { filter } from "lodash";
 import { sentenceCase } from "change-case";
 import { useState } from "react";
 import useResponsive from "../hooks/useResponsive";
+import account from "../data/account";
 // @mui
 import {
   Card,
@@ -30,10 +31,9 @@ import Scrollbar from "../components/scrollbar";
 // sections
 import { UserListHead, UserListToolbar } from "../sections/@dashboard/user";
 // mock
-import USERLIST from "../data/transactions";
+import Transanctions from "../data/transactions";
 
 // ----------------------------------------------------------------------
-
 const TABLE_HEAD = [
   { id: "name", label: "Transaction  title", alignRight: false },
   { id: "id", label: "Transaction id", alignRight: false },
@@ -96,6 +96,8 @@ export default function TransactionsPage() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const isDesktop = useResponsive("up", "lg");
+
+  const USERLIST = Transanctions();
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -176,26 +178,26 @@ export default function TransactionsPage() {
           justifyContent="space-between"
           mb={5}
         >
-          <Typography variant="h4" gutterBottom>
-            Jaydon Frankie
+          <Typography variant="h4" gutterBottom className="text-capitalize">
+            {account.displayName}
           </Typography>
           <Button
             variant="contained"
             startIcon={<Iconify icon="eva:plus-fill" />}
-			href="/new-transaction"
+            href="/new-transaction"
           >
-            Start a new transaction
+            Start transaction
           </Button>
         </Stack>
 
         <Card>
-            <UserListToolbar
-              numSelected={selected.length}
-              filterName={filterName}
-              onFilterName={handleFilterByName}
-            />
+          <UserListToolbar
+            numSelected={selected.length}
+            filterName={filterName}
+            onFilterName={handleFilterByName}
+          />
           <Scrollbar>
-            <TableContainer >
+            <TableContainer>
               <Table>
                 <UserListHead
                   order={order}
@@ -325,7 +327,11 @@ export default function TransactionsPage() {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-            sx={isDesktop ? {marginTop: -14 * rowsPerPage}  : {marginTop: rowsPerPage}}
+            sx={
+              isDesktop
+                ? { marginTop: -7 * rowsPerPage }
+                : { marginTop: rowsPerPage }
+            }
           />
         </Card>
       </Container>

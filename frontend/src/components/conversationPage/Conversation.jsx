@@ -9,13 +9,13 @@ import PersonLogo from "./person-circle.svg";
 import { Navbar, Offcanvas } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-export default function ConversationPage({ user }) {
+export default function ConversationPage({ user, receiver }) {
   const [show, setShow] = useState(false);
   const [spokenTo, setSpokenTo] = useState([]);
-  const [currentReceiver, setCurrentReceiver] = useState(null);
+  const [currentReceiver, setCurrentReceiver] = useState(receiver.id);
   const userId = user.id;
   const [currentChatId, setCurrentChatId] = useState();
-  const [currentChatUsername, setCurrentChatUsername] = useState();
+  const [currentChatUsername, setCurrentChatUsername] = useState(receiver.name);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

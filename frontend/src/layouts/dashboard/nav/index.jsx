@@ -73,7 +73,7 @@ export default function Nav({ openNav, onCloseNav }) {
             <Avatar src={account.photoURL} alt="photoURL" />
 
             <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: "aliceblue" }}>
+              <Typography variant="subtitle2" className="text-capitalize" sx={{ color: "aliceblue" }}>
                 {account.displayName}
               </Typography>
 
@@ -108,7 +108,7 @@ export default function Nav({ openNav, onCloseNav }) {
             sx: {
               width: NAV_WIDTH,
               borderRightStyle: "dashed",
-              bgcolor: "black",
+              bgcolor: "black"
             },
           }}
         >

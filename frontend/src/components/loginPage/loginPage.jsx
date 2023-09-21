@@ -21,7 +21,7 @@ export default function LoginPage () {
 		const data = response.data;
 		setErrorMessages(false);
 		localStorage.setItem('loggedUser', JSON.stringify(data));
-		window.location.replace("http://localhost:5173/chat")
+		window.location.replace("http://localhost:5173/dashboard")
 		})
 		.catch(error => {
 			if (error.response) {

@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types';
-import { forwardRef } from 'react';
+import PropTypes from "prop-types";
+import { forwardRef } from "react";
 // @mui
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
+// eslint-disable-next-line react/display-name
 const SvgColor = forwardRef(({ src, sx, ...other }, ref) => (
   <Box
     component="span"
@@ -13,8 +14,8 @@ const SvgColor = forwardRef(({ src, sx, ...other }, ref) => (
     sx={{
       width: 24,
       height: 24,
-      display: 'inline-block',
-      bgcolor: 'currentColor',
+      display: "inline-block",
+      bgcolor: "#0d6efd",
       mask: `url(${src}) no-repeat center / contain`,
       WebkitMask: `url(${src}) no-repeat center / contain`,
       ...sx,

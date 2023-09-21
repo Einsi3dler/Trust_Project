@@ -3,6 +3,7 @@ import { filter } from "lodash";
 import { sentenceCase } from "change-case";
 import { useState } from "react";
 import useResponsive from "../hooks/useResponsive";
+import account from "../data/account";
 // @mui
 import {
   Card,
@@ -93,11 +94,14 @@ export default function SellerPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const isDesktop = useResponsive("up", "lg");
+  const [receiveMsg, setReceiveMsg] = useState({});
 
+
+  const isDesktop = useResponsive("up", "lg");
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
+	localStorage.setItem("receiver", JSON.stringify(receiveMsg))
   };
 
   const handleCloseMenu = () => {
@@ -175,8 +179,8 @@ export default function SellerPage() {
           justifyContent="space-between"
           mb={5}
         >
-          <Typography variant="h4" gutterBottom>
-            Jaydon Frankie
+          <Typography variant="h4" gutterBottom className="text-capitalize">
+            {account.displayName}
           </Typography>
           <Button
             variant="contained"
@@ -187,15 +191,14 @@ export default function SellerPage() {
         </Stack>
 
         <Card>
-            <UserListToolbar
-              numSelected={selected.length}
-              filterName={filterName}
-              onFilterName={handleFilterByName}
-            />
-
+          <UserListToolbar
+            numSelected={selected.length}
+            filterName={filterName}
+            onFilterName={handleFilterByName}
+          />
 
           <Scrollbar>
-            <TableContainer >
+            <TableContainer>
               <Table>
                 <UserListHead
                   order={order}
@@ -273,7 +276,7 @@ export default function SellerPage() {
                             <IconButton
                               size="large"
                               color="inherit"
-                              onClick={handleOpenMenu}
+                              onClick={(e) => (setReceiveMsg(row), handleOpenMenu(e))}
                             >
                               <Iconify icon={"eva:more-vertical-fill"} />
                             </IconButton>
@@ -324,7 +327,11 @@ export default function SellerPage() {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-            sx={isDesktop ? {marginTop: -7 * rowsPerPage}  : {marginTop: rowsPerPage}}
+            sx={
+              isDesktop
+                ? { marginTop: -7 * rowsPerPage }
+                : { marginTop: rowsPerPage }
+            }
           />
         </Card>
       </Container>
@@ -348,8 +355,10 @@ export default function SellerPage() {
         }}
       >
         <MenuItem>
-          <Iconify icon={"eva:edit-fill"} sx={{ mr: 2 }} />
-          Edit
+		<a  href="/chat" className="d-flex text-decoration-none">
+				<div className="msg"></div>
+            <span className="ps-2" >Message</span>
+			</a>
         </MenuItem>
 
         <MenuItem sx={{ color: "error.main" }}>
